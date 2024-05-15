@@ -3,12 +3,12 @@ import MenuItem from "@/components/common/MenuItem.vue";
 import { Search, ShoppingCart } from "@element-plus/icons-vue";
 import { useAuthStore } from "~/stores/auth.js";
 import spaFetch from "~/plugins/fetch.js";
- 
+
 const route = useRoute();
 const router = useRouter();
 const auth = useAuthStore();
 const { $apiUrl } = useNuxtApp();
- 
+
 const search = ref("");
 // const menu = ref([
 //   {
@@ -112,7 +112,7 @@ const menu = ref([
     link: "#",
   },
 ]);
- 
+
 onMounted(() => {
   let prevScrollpos = window.pageYOffset;
   window.onscroll = function () {
@@ -131,12 +131,12 @@ const handleClick = () => {
   router.push("/");
   console.log(route);
 };
- 
+
 const logOut = () => {
   auth.deleteAuth();
   window.location.reload();
 };
- 
+
 const getCart = () => {
   const id =
     auth.$state.user && auth.$state.user.cart ? auth.$state.user.cart : null;
@@ -150,17 +150,17 @@ const getCart = () => {
       console.log("error", error.response);
     });
 };
- 
+
 getCart();
- 
+
 watch(search, () => {
   router.push("/category/search/");
   auth.setSearch(search.value);
 });
 </script>
- 
+
 <template>
-  <div class="h-screen relative font-sofia">
+  <div class="h-screen relative font-roboto">
     <div id="navbar">
       <div class="w-full bg-white shadow-lg py-2 relative">
         <div
@@ -169,11 +169,11 @@ watch(search, () => {
           <div>
             <img
               class="w-20 h-20 object-cover"
-              src="../assets/img/logo2.png"
+              src="../assets/img/logo_shop.jpg"
               alt="Logo Store"
             />
           </div>
- 
+
           <div class="basis-1/3 border-solid border-1">
             <el-input
               v-model="search"
@@ -185,7 +185,7 @@ watch(search, () => {
             </el-input>
           </div>
           <nav>
-            <div class="flex justify-center text-lg font-bold">
+            <div class="flex justify-center text-base font-bold">
               <MenuItem
                 v-for="(item, index) in menu"
                 :key="index"
@@ -201,8 +201,11 @@ watch(search, () => {
           >
             <el-icon size="34"><ShoppingCart /></el-icon>
           </el-badge>
- 
-          <div v-if="!auth.$state.accessToken || !auth.$state.refreshToken">
+
+          <div
+            class="text-base"
+            v-if="!auth.$state.accessToken || !auth.$state.refreshToken"
+          >
             <nuxt-link
               to="/login"
               class="cursor-pointer hover:underline hover:text-red-700"
@@ -236,7 +239,7 @@ watch(search, () => {
         </div>
       </div>
     </div>
- 
+
     <div class="mt-[90px]">
       <div
         v-if="route.href !== '/'"
@@ -244,7 +247,7 @@ watch(search, () => {
       ></div>
       <slot />
     </div>
- 
+
     <div class="w-full">
       <div
         class="w-full h-24 bg-yellow-300 mt-10 flex justify-center items-center justify-evenly"
@@ -329,7 +332,7 @@ watch(search, () => {
     </div>
   </div>
 </template>
- 
+
 <style lang="scss">
 .el-message {
   z-index: 9999 !important;
@@ -880,7 +883,7 @@ watch(search, () => {
         </div>
     </div>
 </template> -->
-        <!-- <div class="w-full">
+<!-- <div class="w-full">
             <div class="w-full h-24 bg-yellow-300 mt-10 flex justify-center items-center justify-evenly">
                 <div class="p-6 border-solid border-black">
                     <p>
@@ -1025,13 +1028,11 @@ watch(search, () => {
 
             </div>
         </div> -->
-    <!-- </div>
+<!-- </div>
 </template> -->
 
-<style lang="scss" >
-.el-message{
-    z-index: 9999 !important;
+<style lang="scss">
+.el-message {
+  z-index: 9999 !important;
 }
-
-
 </style>
