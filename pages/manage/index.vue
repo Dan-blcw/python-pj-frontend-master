@@ -98,7 +98,7 @@ const handleChange = (key) => {
 }
 
 .content {
-  padding: 100px;
+  padding: 50px;
   width: 100vh;
   height: 100vh;
   display: flex;

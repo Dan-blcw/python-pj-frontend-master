@@ -58,15 +58,19 @@ watch(search, () => {
                   height="500"
                   style="width: 100%">
             <el-table-column prop="stt" label="STT" width="80"></el-table-column>
-            <el-table-column prop="username" label="Tài khoản" width="520"/>
-            <el-table-column prop="is_superuser" label="Vai trò" width="520">
+            <el-table-column prop="username" label="Tài khoản" width="200"/>
+            <el-table-column prop="first_name" label="first_name" width="200"/>
+            <el-table-column prop="last_name" label="last_name" width="200"/>
+            <el-table-column prop="email" label="Email" width="200"/>
+            <el-table-column prop="date_joined" label="Ngày Tạo" width="260"/>
+            <el-table-column prop="is_superuser" label="Vai trò" width="200">
                 <template #default="scope">
                     <div>
                         {{scope.row.is_superuser ? 'Quản trị viên' : 'Người dùng'}}
                     </div>
                 </template>
             </el-table-column>
-            <el-table-column prop="is_active" label="Trạng thái" width="520">
+            <el-table-column prop="is_active" label="Trạng thái" width="200">
                 <template #default="scope">
                     <div>
                         {{scope.row.is_active ? 'Hoạt động' : 'Chặn'}}

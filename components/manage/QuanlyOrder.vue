@@ -65,14 +65,14 @@ watch(search, () => {
                   height="500"
                   style="width: 100%">
             <el-table-column prop="stt" label="STT" width="80"></el-table-column>
-            <el-table-column prop="name" label="Họ và tên" width="250"/>
-            <el-table-column prop="phone" label="Số điện thoại đặt hàng" width="250"/>
-            <el-table-column prop="address" label="Địa chỉ giao hàng" width="250"/>
-            <el-table-column prop="total_amount" label="Tổng giá trị đơn hàng" width="250"/>
-            <el-table-column label="Phương thức thanh toán" width="250">
+            <el-table-column prop="name" label="Họ và tên" width="240"/>
+            <el-table-column prop="phone" label="Số điện thoại đặt hàng" width="240"/>
+            <el-table-column prop="address" label="Địa chỉ giao hàng" width="240"/>
+            <el-table-column prop="total_amount" label="Tổng giá trị đơn hàng" width="240"/>
+            <el-table-column label="Phương thức thanh toán" width="240">
                 Thanh toán khi nhận hàng
             </el-table-column>
-            <el-table-column fixed="right" label="Hành động" width="250">
+            <el-table-column fixed="right" label="Hành động" width="240">
                 <template #default="scope">
                     <el-button type="primary"
                                size="small"

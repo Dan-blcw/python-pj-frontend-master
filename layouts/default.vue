@@ -1,5 +1,416 @@
 <script setup>
 import MenuItem from "@/components/common/MenuItem.vue";
+import {
+  Search,
+  ShoppingCart,
+  AlarmClock,
+  Phone,
+  User,
+  Message,
+  Shop,
+  Location,
+} from "@element-plus/icons-vue";
+import { useAuthStore } from "~/stores/auth.js";
+import spaFetch from "~/plugins/fetch.js";
+
+const route = useRoute();
+const router = useRouter();
+const auth = useAuthStore();
+const { $apiUrl } = useNuxtApp();
+
+const search = ref("");
+// const menu = ref([
+//   {
+//     isSubmenu: false,
+//     title: "Trang chủ",
+//     link: "/",
+//   },
+//   {
+//     isSubmenu: true,
+//     title: "Sản phẩm",
+//     link: "/category/gundam/",
+//   },
+//   {
+//     isSubmenu: true,
+//     title: "Giới thiệu",
+//     link: "/category/t1/",
+//   },
+// ]);
+const menu = ref([
+  {
+    isSubmenu: false,
+    title: "Trang chủ",
+    link: "/",
+  },
+  {
+    isSubmenu: true,
+    title: "Bộ sưu tầm",
+    link: "/category/gundam/",
+    children: [
+      {
+        img: "",
+        title: "SP1",
+        link: "/category/pokemon/",
+      },
+      {
+        img: "",
+        title: "SP2",
+        link: "/category/pokemontcg/",
+      },
+      {
+        img: "",
+        title: "SP3",
+        link: "/category/onepiece/",
+      },
+      {
+        img: "",
+        title: "SP4",
+        link: "/category/dragonball/",
+      },
+      {
+        img: "",
+        title: "SP5",
+        link: "/category/doraemon/",
+      },
+      {
+        img: "",
+        title: "SP6",
+        link: "/category/other/",
+      },
+      {
+        img: "",
+        title: "SP7",
+        link: "/category/",
+      },
+      {
+        img: "",
+        title: "SP8",
+        link: "/category/",
+      },
+      // {
+      //   img: "",
+      //   title: "SP9",
+      //   link: "/category/doraemon/",
+      // }
+    ],
+    mainSubMenu: {
+      img: "",
+      title: "SP0",
+      link: "#",
+    },
+    colorBg: "bg-amber-600",
+    colorItemSM: "bg-teal-900",
+  },
+  {
+    isSubmenu: true,
+    title: "Phụ kiện",
+    link: "/category/t1/",
+    children: [
+      {
+        img: "",
+        title: "PK1",
+        link: "/category/t1Handmade/",
+      },
+      {
+        img: "",
+        title: "PK2",
+        link: "/category/t1Figure/",
+      },
+      {
+        img: "",
+        title: "PK3",
+        link: "/category/t1Backpack/",
+      },
+      {
+        img: "",
+        title: "PK4",
+        link: "/category/",
+      },
+    ],
+    mainSubMenu: {
+      img: "",
+      title: "PK0",
+      link: "/category/t1Clothes/",
+    },
+    colorBg: "bg-red-500",
+    colorItemSM: "bg-teal-900",
+    advertising: "https://i.pinimg.com/564x/b3/74/d5/b374d5de39f1c664bfc6c258ccb22566.jpg"
+  },
+  {
+    isSubmenu: false,
+    title: "Giới thiệu",
+    link: "/about/",
+  },
+]);
+
+onMounted(() => {
+  let prevScrollpos = window.pageYOffset;
+  window.onscroll = function () {
+    const currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos && currentScrollPos > 120) {
+      document.getElementById("navbar").style.top = "-140px";
+    } else if (currentScrollPos <= 120) {
+      document.getElementById("navbar").style.top = "0px";
+    } else {
+      document.getElementById("navbar").style.top = "-200px";
+    }
+    prevScrollpos = currentScrollPos;
+  };
+});
+const handleClick = () => {
+  router.push("/");
+  console.log(route);
+};
+
+const logOut = () => {
+  auth.deleteAuth();
+  window.location.reload();
+};
+
+const getCart = () => {
+  const id =
+    auth.$state.user && auth.$state.user.cart ? auth.$state.user.cart : null;
+  spaFetch()(`${$apiUrl.CART}${id}/`, {
+    method: "GET",
+  })
+    .then((res) => {
+      auth.setQuantityInCart(res.products.length);
+    })
+    .catch((error) => {
+      console.log("error", error.response);
+    });
+};
+
+getCart();
+
+watch(search, () => {
+  router.push("/category/search/");
+  auth.setSearch(search.value);
+});
+</script>
+
+<template>
+  <div class="h-screen relative font-roboto">
+    <div id="navbar">
+      <div class="w-full bg-white shadow-lg py-2 relative">
+        <div
+          class="max-w-[1300px] flex flex-row justify-between items-center mx-auto text-lg"
+        >
+          <div class="flex items-center gap-10">
+            <a href="/">
+              <img
+                class="w-[200px] object-cover"
+                src="../assets/img/logo.webp"
+                alt="Logo Store"
+              />
+            </a>
+
+            <div class="w-[300px] border-solid border-1">
+              <el-input
+                v-model="search"
+                placeholder="Nhập từ khoá cần tìm"
+                class="input-with-select"
+                size="large"
+                :suffix-icon="Search"
+              >
+              </el-input>
+            </div>
+          </div>
+          <nav>
+            <div class="flex justify-center text-base font-bold">
+              <MenuItem
+                v-for="(item, index) in menu"
+                :key="index"
+                :item="item"
+                :class="item.isSubmenu ? 'menu-item-wrap' : ''"
+              />
+            </div>
+          </nav>
+          <div class="flex items-center gap-10">
+            <el-badge
+              :value="auth.$state.quantityInCart"
+              class="cursor-pointer hover:text-blue-600 transition duration-200"
+              @click="$router.push('/cart')"
+            >
+              <el-icon size="34"><ShoppingCart /></el-icon>
+            </el-badge>
+            <div
+              class="text-base"
+              v-if="!auth.$state.accessToken || !auth.$state.refreshToken"
+            >
+              <nuxt-link
+                to="/login"
+                class="cursor-pointer hover:underline hover:text-[#409eff]"
+              >
+                Đăng nhập
+              </nuxt-link>
+              <el-divider direction="vertical" />
+              <nuxt-link
+                to="/register"
+                class="cursor-pointer hover:underline hover:text-[#409eff]"
+              >
+                Đăng ký
+              </nuxt-link>
+            </div>
+            <div v-else>
+              <span> Xin chào, {{ auth.$state.user.username }} </span>
+              <el-divider direction="vertical" />
+              <nuxt-link to="/myorder">
+                <span
+                  class="cursor-pointer hover:underline hover:text-[#409eff]"
+                >
+                  Đơn hàng của tôi
+                </span>
+              </nuxt-link>
+              <el-divider direction="vertical" />
+              <span
+                class="cursor-pointer hover:underline hover:text-[#409eff]"
+                @click="logOut"
+              >
+                Đăng xuất
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-[90px]">
+      <div
+        v-if="route.href !== '/'"
+        class="flex justify-center items-center"
+      ></div>
+      <slot />
+    </div>
+
+    <div class="w-full bg-gray bg-shawdow-footer">
+      <div class="max-w-[1200px] py-5 mx-auto">
+        <div
+          class="w-full mx-auto flex justify-between border-solid border-b border-[#ccc] py-2"
+        >
+          <div>
+            <a
+              class="block h-[60px] mb-2 rounded-full overflow-hidden"
+              href="/"
+            >
+              <img
+                class="w-full h-full"
+                src="../assets/img/logo.webp"
+                alt="logo"
+              />
+            </a>
+            <q class="block w-[200px]"
+              >SOMEHOW là bạn đồng hành của người tiêu dùng</q
+            >
+          </div>
+          <div class="">
+            <h3 class="text-xl px-4 mb-2 font-bold">Chuyển hướng</h3>
+            <ul>
+              <li>
+                <a
+                  class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
+                  href="/"
+                  >Trang chủ</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
+                  href="/category/gundam/"
+                  >Bộ sưu tầm</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
+                  href="/category/t1/"
+                  >Sản phẩm</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
+                  href="/about"
+                  >Giới thiệu</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl mb-2 font-bold">Hỗ trợ</h3>
+            <p class="text-[#555] mb-2">Đặt hàng trực tuyến (8h-22h)</p>
+            <ul>
+              <li class="flex items-center gap-2 text-[#000] font-semibold">
+                <div>
+                  <el-icon :size="25" color="#555"><AlarmClock /></el-icon>
+                </div>
+                Thứ 2 - Thứ 7
+              </li>
+              <li class="flex items-center gap-2 text-[#000] font-semibold">
+                <div>
+                  <el-icon :size="25" color="#555"><Phone /></el-icon>
+                </div>
+                086 5783 359
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl mb-2 font-bold">Liên hệ</h3>
+            <ul>
+              <li class="flex gap-2 mb-2 items-center max-w-[300px]">
+                <el-icon :size="25" color="#555"><Message /></el-icon>
+                phuhuon646@gmail.com
+              </li>
+              <li class="flex gap-2 mb-2 items-center max-w-[300px]">
+                <el-icon :size="25" color="#555"><Message /></el-icon>
+                xuanphong03.fullstack@gmail.com
+              </li>
+              <li class="flex gap-2 mb-2 items-center max-w-[300px]">
+                <el-icon :size="25" color="#555"><Shop /></el-icon>
+                somehowclothing.vn
+              </li>
+              <li class="flex gap-2 mb-2 items-start max-w-[300px]">
+                <el-icon :size="25" color="#555"><Location /></el-icon>
+                Nghiêm Xuân Yêm, Đại Kim, Hoàng Mai, Hà Nội 100000
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="w-full mt-2 flex items-center">
+          <img src="../assets/img/permission-logo.png" alt="permission logo" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss">
+.el-message {
+  z-index: 9999 !important;
+}
+.submenu {
+  /* Define the size of the submenu */
+  width: 300px; /* Adjust as needed */
+  /* Apply background color */
+  background-color: #949494; /* Red background color */
+}
+
+/* Styles for submenu items */
+.submenu-item {
+  /* Define size and spacing of submenu items */
+  padding: 10px; /* Adjust as needed */
+}
+
+/* Styles for submenu item images */
+.submenu-item img {
+  /* Define size of submenu item images */
+  width: 50px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+</style>
+<!-- ------------------------------------------------------------ -->
+<!-- <script setup>
+import MenuItem from "@/components/common/MenuItem.vue";
 import { Search, ShoppingCart } from "@element-plus/icons-vue";
 import { useAuthStore } from "~/stores/auth.js";
 import spaFetch from "~/plugins/fetch.js";
@@ -357,7 +768,7 @@ watch(search, () => {
   width: 50px; /* Adjust as needed */
   height: auto; /* Maintain aspect ratio */
 }
-</style>
+</style> -->
 
 
 <!-- <script setup>

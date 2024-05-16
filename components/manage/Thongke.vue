@@ -1,3 +1,5 @@
+
+
 <template>
     <div class="container">
       <div class="stats-container">
@@ -26,14 +28,16 @@
         <h3>Số loại sản phẩm</h3>
         <p>{{ totalCategories }}</p>
       </div>
-      <div class="chart-container">
+      <!-- <div class="chart-container">
         <h3>Biểu đồ Doanh thu hàng tháng</h3>
         <div class="chart">
           <div class="bar" v-for="(value, index) in monthlyRevenue" :key="index" :style="{ height: value + 'px' }">
             <span>{{ value }}</span>
           </div>
         </div>
-      </div>
+      </div> -->
+      <!-- <AreaChart>
+      </AreaChart> -->
     </div>
     <div class="container">
       <div class="stats-container">
@@ -52,6 +56,8 @@
   </template>
   
   <script setup>
+import AreaChart from './AreaChart.vue';
+
   const totalCustomers = ref(100);
   const revenue = ref("$10,000");
   const totalProducts = ref(500);

@@ -153,6 +153,10 @@ getProducts()
     </div>
 </template>
 
-<style lang="scss">
 
+<style scoped>
+  .card-new-product {
+    transition: all 0.3s;
+  }
 </style>
+

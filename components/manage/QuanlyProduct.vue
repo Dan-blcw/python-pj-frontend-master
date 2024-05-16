@@ -101,11 +101,11 @@ watch(search, () => {
                     <img :src="prop.row.img" alt="">
                 </template>
             </el-table-column>
-            <el-table-column prop="name" label="Tên sản phẩm" width="250"/>
+            <el-table-column prop="name" label="Tên sản phẩm" width="220"/>
             <el-table-column prop="type" label="Loại sản phẩm" width="160"/>
-            <el-table-column prop="quantity" label="Số lượng tồn kho" width="200"/>
-            <el-table-column prop="price" label="Giá thành" width="200"/>
-            <el-table-column prop="description" label="Mô tả" width="400"/>
+            <el-table-column prop="quantity" label="Số lượng tồn kho" width="160"/>
+            <el-table-column prop="price" label="Giá thành" width="160"/>
+            <el-table-column prop="description" label="Mô tả" width="420"/>
             <el-table-column fixed="right" label="Hành động" width="120">
                 <template #default="scope">
                     <el-button link
@@ -140,7 +140,7 @@ watch(search, () => {
   display: flex;
   align-items: center;
   gap: 10px; /* Adjust the gap between the input and the button */
-  padding: 10px 0; /* Adjust the padding as needed */
+  padding: 5px 0; /* Adjust the padding as needed */
 }
 
 .search-input {
