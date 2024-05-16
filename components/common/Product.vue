@@ -1,5 +1,4 @@
 <script setup>
-import CategoryProducts from "~/components/common/CategoryProducts.vue";
 import { ref } from 'vue'
 import {ShoppingCart} from "@element-plus/icons-vue";
 import {fakeProducts} from "@/constants/fakeData.js"

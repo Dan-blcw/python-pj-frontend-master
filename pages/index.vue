@@ -1,9 +1,8 @@
 <script setup>
-import MenuNewProducts from "~/components/common/MenuNewProducts.vue";
-import CategoryProducts from "~/components/common/CategoryProducts.vue";
-import MenuHotDealProducts from "~/components/common/MenuHotDealProducts.vue";
-import MenuT1Products from "~/components/common/MenuT1Products.vue";
-import MenuGundamProducts from "~/components/common/MenuGundamProducts.vue";
+import Danhsachsanphammoi from "~/components/common/Danhsachsanphammoi.vue";
+import Danhsachsanphambanchay from "~/components/common/Danhsachsanphambanchay.vue";
+import Danhsachsanphamchung0 from "~/components/common/Danhsachsanphamchung0.vue";
+import Danhsachsanphamchung1 from "~/components/common/Danhsachsanphamchung1.vue";
  
 const intervalImg = ref();
 const checkInterval = ref(false);
@@ -99,17 +98,17 @@ onUnmounted(() => {
     </div>
  
     <div
-      class="max-w-[1200px] flex flex-col items-center justify-center mt-10 mx-auto"
+      class="max-w-[1250px] flex flex-col items-center justify-center mt-10 mx-auto"
     >
       <div class="w-full">
 
-          <MenuNewProducts />
+          <Danhsachsanphammoi/>
  
-          <MenuHotDealProducts />
+          <Danhsachsanphambanchay />
  
-          <MenuGundamProducts />
+          <Danhsachsanphamchung0 />
  
-          <MenuT1Products />
+          <Danhsachsanphamchung1 />
       </div>
     </div>
   </div>

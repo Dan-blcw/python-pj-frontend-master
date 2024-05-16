@@ -18,25 +18,29 @@ const getProducts = () => {
   spaFetch(false)($apiUrl.PRODUCT, {
     method: "GET",
     params: {
-      page: 3,
+      page: 1,
       pageSize: 10,
     },
+    // body: {
+    //     username: 'admin',
+    //     password: '123456'
+    // }
   })
     .then((res) => {
       products.value = res.results.map((item) => {
         return {
           ...item,
+          image: item.img,
           status: item.type,
         };
       });
     })
     .catch((error) => {
-      console.log("error", error.response);
+      console.log("error", error.response._data);
     });
 };
 
 const handleClick = (item) => {
-  console.log(item);
   router.push(item && item.id ? `/product/${item.id}` : "#");
 };
 
@@ -44,18 +48,17 @@ getProducts();
 </script>
 
 <template>
-  <div class="w-full mb-5">
+  <div class="mb-20">
     <div
-      class="relative rounded-xl overflow-hidden flex justify-center items-center mt-5 rounded-t-xl bg-fixed h-[400px] relative w-full bg-no-repeat bg-center bg-cover bg-[url('https://img3.thuthuatphanmem.vn/uploads/2019/10/14/banner-thoi-trang-hien-dai-dep-nhat_113857069.jpg')]"
+      class="flex items-center justify-center relative bg-[url('https://sherifstore.click/static/media/banner2.ad24901f3755b7bc537e.webp')] bg-no-repeat bg-cover bg-center bg-fixed mt-5 w-full h-[280px] rounded-t-xl"
     >
       <div class="absolute inset-0 bg-black opacity-50"></div>
       <h2
         class="relative text-6xl text-[#fff] font-black uppercase text-center"
       >
-        Danh sách sản phẩm
+        Sản phẩm mới
       </h2>
     </div>
-
     <swiper
       :loop="true"
       :slides-per-view="4"
@@ -66,7 +69,7 @@ getProducts();
       }"
       :navigation="true"
       :modules="modules"
-      class="w-full"
+      class="w-4/5"
     >
       <swiper-slide
         v-for="(product, index) in products"
@@ -111,7 +114,7 @@ getProducts();
 }
 </style>
 
-<!-- ---------------------------------- -->
+<!--  -->
 <!-- <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
@@ -132,25 +135,29 @@ const getProducts = () => {
   spaFetch(false)($apiUrl.PRODUCT, {
     method: "GET",
     params: {
-      page: 3,
+      page: 1,
       pageSize: 10,
     },
+    // body: {
+    //     username: 'admin',
+    //     password: '123456'
+    // }
   })
     .then((res) => {
       products.value = res.results.map((item) => {
         return {
           ...item,
+          image: item.img,
           status: item.type,
         };
       });
     })
     .catch((error) => {
-      console.log("error", error.response);
+      console.log("error", error.response._data);
     });
 };
  
 const handleClick = (item) => {
-  console.log(item);
   router.push(item && item.id ? `/product/${item.id}` : "#");
 };
  
@@ -158,11 +165,11 @@ getProducts();
 </script>
  
 <template>
-  <div class="w-full mb-20">
+  <div class="mb-20">
     <h2
       class="text-2xl text-[#555] font-bold uppercase text-center bg-gray-200 py-2"
     >
-      Quần áo nam
+      Sản phẩm mới
     </h2>
     <swiper
       :loop="true"
@@ -186,7 +193,7 @@ getProducts();
           @click="handleClick(product)"
         >
           <div class="w-full relative">
-            <img class="w-full h-full" :src="product.img" alt="" />
+            <img class="w-full h-full" :src="product.image" alt="" />
             <div
               class="w-full py-2 text-center text-white bg-blue-500 uppercase font-semibold absolute bottom-0"
             >
@@ -196,7 +203,7 @@ getProducts();
           <div
             class="h-[5rem] text-sm p-3 text-center font-semibold hover:text-blue-800"
           >
-            {{ product.name }}
+            <span>{{ product.name }}</span>
           </div>
           <div
             class="p-2 text-center border-solid border-t-gray-200 border border-b-blue-300 border-b-2 text-red-600 font-semibold"
@@ -212,10 +219,9 @@ getProducts();
         </div>
       </swiper-slide>
     </swiper>
- 
     <img
       class="mt-5 w-full h-72 rounded-xl"
-      src="https://intphcm.com/data/upload/banner-thoi-trang-nam.jpg"
+      src="https://theme.hstatic.net/1000026602/1001232314/14/img-banner-index.jpg?v=107"
       alt="banner"
     />
   </div>
@@ -226,7 +232,6 @@ getProducts();
   transition: all 0.3s;
 }
 </style> -->
-<!-- ----------------------------------------------------------------------------------- -->
 <!-- <script setup>
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
@@ -234,9 +239,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper/modules';
 import {ShoppingCart} from "@element-plus/icons-vue";
-import {fakeProducts} from "@/constants/fakeData.js"
+import {fakeProducts} from '@/constants/fakeData.js'
 import spaFetch from "~/plugins/fetch.js";
-
 
 const { $apiUrl } = useNuxtApp()
 
@@ -244,79 +248,74 @@ const modules = ref([Autoplay, Navigation])
 const products = ref(fakeProducts)
 const router = useRouter()
 
-const getProducts = () =>{
-    spaFetch(false)($apiUrl.PRODUCT,{
+const getProducts = () => {
+    spaFetch(false)($apiUrl.PRODUCT, {
         method: 'GET',
-        params:{
-            page: 3,
+        params: {
+            page: 1,
             pageSize: 10,
         }
-    }).then( res => {
-        products.value = res.results.map(item =>{
+        // body: {
+        //     username: 'admin',
+        //     password: '123456'
+        // }
+    }).then(res => {
+        products.value = res.results.map(item => {
             return {
                 ...item,
+                image: item.img,
                 status: item.type
             }
         })
-    }).catch( error => {
-        console.log("error", error.response)
+    }).catch(error => {
+        console.log("error", error.response._data)
     })
 }
 
 const handleClick = (item) => {
-    console.log(item)
     router.push(item && item.id ? `/product/${item.id}` : "#")
 }
 
 getProducts()
+
 </script>
 
 <template>
-    <div class="w-full">
-        <div class=" w-full bg-red-600 flex h-[45px] ">
-            <div class="w-1/6 bg-red-800 flex items-center justify-center">
-                    <span class="font-semibold flex text-white">
-                        HG - Gundam
-                    </span>
-            </div>
-        </div>
-        <swiper
-            :loop="true"
-            :slides-per-view="4"
-            :spaceBetween="20"
-            :autoplay="{
+    <swiper
+        :loop="true"
+        :slides-per-view="4"
+        :spaceBetween="20"
+        :autoplay="{
             delay: 1500,
             disableOnInteraction: true,
         }"
-            :navigation="true"
-            :modules="modules"
-            class="w-full "
-
-        >
-            <swiper-slide v-for="(product, index) in products"
-                          :key="index"
-                          class="mt-4 hover:mt-1 card-new-product">
-                <div class="w-full bg-white border border-solid border-gray-300 rounded-xl overflow-hidden cursor-pointer" @click="handleClick(product)">
-                    <div class="w-full relative">
-                        <img class="w-full h-full" :src="product.img" alt="">
-                        <div class="w-full py-2 text-center text-white bg-blue-500 uppercase font-semibold absolute bottom-0">
-                            {{ product.status }}
-                        </div>
-                    </div>
-                    <div class=" h-[5rem] text-sm p-3 text-center font-semibold hover:text-blue-800 ">
-                        {{ product.name }}
-                    </div>
-                    <div class="p-2 text-center border-solid border-t-gray-200 border border-b-blue-300 border-b-2 text-red-600 font-semibold">
-                        {{ product.price }}đ
-                    </div>
-                    <div class="py-2 hover text-center font-bold text-blue-600 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-red-600 transition duration-200">
-                        <el-icon size="20"> <ShoppingCart/> </el-icon>
-                        Thêm vào giỏ
+        :navigation="true"
+        :modules="modules"
+        class="w-full "
+    >
+        <swiper-slide v-for="(product, index) in products"
+                            :key="index"
+                      class="mt-4 hover:mt-1 card-new-product">
+            <div class="w-full bg-white border border-solid border-gray-300 rounded-xl overflow-hidden cursor-pointer" @click="handleClick(product)">
+                <div class="w-full relative">
+                    <img class="w-full h-full" :src="product.image" alt="">
+                    <div class="w-full py-2 text-center text-white bg-blue-500 uppercase font-semibold absolute bottom-0">
+                        {{ product.status }}
                     </div>
                 </div>
-            </swiper-slide>
-        </swiper>
-    </div>
+                <div class=" h-[5rem] text-sm p-3 text-center font-semibold hover:text-blue-800 ">
+                    <span>{{ product.name }}</span>
+                </div>
+                <div class="p-2 text-center border-solid border-t-gray-200 border border-b-blue-300 border-b-2 text-red-600 font-semibold">
+                    {{ product.price }}đ
+                </div>
+                <div class="py-2 hover text-center font-bold text-blue-600 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-red-600 transition duration-200">
+                    <el-icon size="20"> <ShoppingCart/> </el-icon>
+                    Thêm vào giỏ
+                </div>
+            </div>
+        </swiper-slide>
+    </swiper>
 </template>
 
 <style scoped>

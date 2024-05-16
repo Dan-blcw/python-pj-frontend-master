@@ -1,5 +1,4 @@
 <script setup>
-import CategoryProducts from "~/components/common/CategoryProducts.vue";
 import { ref } from 'vue'
 import {ShoppingCart} from "@element-plus/icons-vue";
 import {fakeProducts} from "@/constants/fakeData.js"
@@ -117,28 +116,37 @@ getProducts()
                         </el-select>
                     </div>
                 </div> -->
-               <div class="w-full grid grid-cols-4 gap-4">
+               <div class="w-3/4 grid grid-cols-4 gap-4">
                    <div v-for="(product, index) in products"
-                                 :key="index"
-                                 class="mt-4 hover:mt-1 card-new-product">
-                       <div class="w-full bg-white border border-solid border-gray-300 rounded-xl overflow-hidden cursor-pointer" @click="handleClick(product)">
-                           <div class="w-full relative">
-                               <img class="w-full h-full" :src="product.img" alt="">
-                               <div class="w-full py-2 text-center text-white bg-blue-500 uppercase font-semibold absolute bottom-0">
-                                   {{ product.status }}
-                               </div>
-                           </div>
-                           <div class=" h-[5rem] text-sm p-3 text-center font-semibold hover:text-blue-800 ">
-                               {{ product.name }}
-                           </div>
-                           <div class="p-2 text-center border-solid border-t-gray-200 border border-b-blue-300 border-b-2 text-red-600 font-semibold">
-                               {{ product.price }}đ
-                           </div>
-                           <div class="py-2 hover text-center font-bold text-blue-600 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-red-600 transition duration-200">
-                               <el-icon size="20"> <ShoppingCart/> </el-icon>
-                               Thêm vào giỏ
-                           </div>
-                       </div>
+                        :key="index"
+                        class="mt-4 hover:mt-1 card-new-product">
+                        <div
+                            class="w-full bg-white border border-solid border-gray-300 rounded-xl overflow-hidden cursor-pointer"
+                            @click="handleClick(product)"
+                            >
+                            <div class="w-full relative">
+                                <img class="w-full h-full" :src="product.img" alt="" />
+                            </div>
+                            <p
+                                class="w-full h-[40px] mt-2 text-sm px-2 font-normal hover:text-blue-800 line-clamp-2"
+                            >
+                                {{ product.name }}
+                            </p>
+                            <span class="p-2 border-solid text-black font-semibold">
+                                {{
+                                product.price.toLocaleString("vi", {
+                                    style: "currency",
+                                    currency: "VND",
+                                })
+                                }}
+                            </span>
+                            <div
+                                class="py-2 hover text-center font-bold text-blue-600 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-black transition duration-200"
+                            >
+                                <el-icon size="20"> <ShoppingCart /> </el-icon>
+                                Thêm vào giỏ
+                            </div>
+                        </div>
                    </div>
                </div>
                <el-pagination

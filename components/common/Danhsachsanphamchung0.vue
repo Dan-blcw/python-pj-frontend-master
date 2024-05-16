@@ -18,7 +18,7 @@ const getProducts = () => {
   spaFetch(false)($apiUrl.PRODUCT, {
     method: "GET",
     params: {
-      page: 4,
+      page: 3,
       pageSize: 10,
     },
   })
@@ -36,14 +36,26 @@ const getProducts = () => {
 };
 
 const handleClick = (item) => {
-  router.push(item && item.id ? `/product/${item.id}` : "");
+  console.log(item);
+  router.push(item && item.id ? `/product/${item.id}` : "#");
 };
 
 getProducts();
 </script>
 
 <template>
-  <div class="w-full mb-20">
+  <div class="w-full mb-5">
+    <div
+      class="relative rounded-xl overflow-hidden flex justify-center items-center mt-5 rounded-t-xl bg-fixed h-[280px] relative w-full bg-no-repeat bg-center bg-cover bg-[url('https://img3.thuthuatphanmem.vn/uploads/2019/10/14/banner-thoi-trang-hien-dai-dep-nhat_113857069.jpg')]"
+    >
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+      <h2
+        class="relative text-6xl text-[#fff] font-black uppercase text-center"
+      >
+        Danh sách sản phẩm
+      </h2>
+    </div>
+
     <swiper
       :loop="true"
       :slides-per-view="4"
@@ -54,7 +66,7 @@ getProducts();
       }"
       :navigation="true"
       :modules="modules"
-      class="w-full"
+      class="w-4/5"
     >
       <swiper-slide
         v-for="(product, index) in products"
@@ -98,7 +110,8 @@ getProducts();
   transition: all 0.3s;
 }
 </style>
-<!-- ------------------------------------------------ -->
+
+<!-- ---------------------------------- -->
 <!-- <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
@@ -119,7 +132,7 @@ const getProducts = () => {
   spaFetch(false)($apiUrl.PRODUCT, {
     method: "GET",
     params: {
-      page: 4,
+      page: 3,
       pageSize: 10,
     },
   })
@@ -137,7 +150,8 @@ const getProducts = () => {
 };
  
 const handleClick = (item) => {
-  router.push(item && item.id ? `/product/${item.id}` : "");
+  console.log(item);
+  router.push(item && item.id ? `/product/${item.id}` : "#");
 };
  
 getProducts();
@@ -148,7 +162,7 @@ getProducts();
     <h2
       class="text-2xl text-[#555] font-bold uppercase text-center bg-gray-200 py-2"
     >
-      Quần áo nữ
+      Quần áo nam
     </h2>
     <swiper
       :loop="true"
@@ -198,9 +212,10 @@ getProducts();
         </div>
       </swiper-slide>
     </swiper>
+ 
     <img
       class="mt-5 w-full h-72 rounded-xl"
-      src="https://img3.thuthuatphanmem.vn/uploads/2019/10/14/banner-thoi-trang-hien-dai-dep-nhat_113857069.jpg"
+      src="https://intphcm.com/data/upload/banner-thoi-trang-nam.jpg"
       alt="banner"
     />
   </div>
@@ -211,8 +226,7 @@ getProducts();
   transition: all 0.3s;
 }
 </style> -->
-
-<!-- -------------------------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------------------------- -->
 <!-- <script setup>
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
@@ -234,7 +248,7 @@ const getProducts = () =>{
     spaFetch(false)($apiUrl.PRODUCT,{
         method: 'GET',
         params:{
-            page: 4,
+            page: 3,
             pageSize: 10,
         }
     }).then( res => {
@@ -250,11 +264,11 @@ const getProducts = () =>{
 }
 
 const handleClick = (item) => {
-    router.push(item && item.id ? `/product/${item.id}` : '')
+    console.log(item)
+    router.push(item && item.id ? `/product/${item.id}` : "#")
 }
 
 getProducts()
-
 </script>
 
 <template>
@@ -262,7 +276,7 @@ getProducts()
         <div class=" w-full bg-red-600 flex h-[45px] ">
             <div class="w-1/6 bg-red-800 flex items-center justify-center">
                     <span class="font-semibold flex text-white">
-                        T1 Products
+                        HG - Gundam
                     </span>
             </div>
         </div>

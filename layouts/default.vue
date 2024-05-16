@@ -45,37 +45,37 @@ const menu = ref([
   {
     isSubmenu: true,
     title: "Bộ sưu tầm",
-    link: "/category/gundam/",
+    link: "/category/bosuutam/sp0/",
     children: [
       {
         img: "",
         title: "SP1",
-        link: "/category/pokemon/",
+        link: "/category/bosuutam/sp1/",
       },
       {
         img: "",
         title: "SP2",
-        link: "/category/pokemontcg/",
+        link: "/category/bosuutam/sp2/",
       },
       {
         img: "",
         title: "SP3",
-        link: "/category/onepiece/",
+        link: "/category/bosuutam/sp3/",
       },
       {
         img: "",
         title: "SP4",
-        link: "/category/dragonball/",
+        link: "/category/bosuutam/sp4/",
       },
       {
         img: "",
         title: "SP5",
-        link: "/category/doraemon/",
+        link: "/category/bosuutam/sp5/",
       },
       {
         img: "",
         title: "SP6",
-        link: "/category/other/",
+        link: "/category/bosuutam/sp6/",
       },
       {
         img: "",
@@ -109,28 +109,28 @@ const menu = ref([
       {
         img: "",
         title: "PK1",
-        link: "/category/t1Handmade/",
+        link: "/category/phukien/pk1",
       },
       {
         img: "",
         title: "PK2",
-        link: "/category/t1Figure/",
+        link: "/category/phukien/pk2",
       },
       {
         img: "",
         title: "PK3",
-        link: "/category/t1Backpack/",
+        link: "/category/phukien/pk3",
       },
       {
         img: "",
         title: "PK4",
-        link: "/category/",
+        link: "/category/phukien/pk4",
       },
     ],
     mainSubMenu: {
       img: "",
       title: "PK0",
-      link: "/category/t1Clothes/",
+      link: "/category/phukien/pk0",
     },
     colorBg: "bg-red-500",
     colorItemSM: "bg-teal-900",
@@ -194,7 +194,7 @@ watch(search, () => {
     <div id="navbar">
       <div class="w-full bg-white shadow-lg py-2 relative">
         <div
-          class="max-w-[1300px] flex flex-row justify-between items-center mx-auto text-lg"
+          class="max-w-[1300px] flex flex-row justify-between items-center mx-auto text-base"
         >
           <div class="flex items-center gap-10">
             <a href="/">
@@ -208,7 +208,7 @@ watch(search, () => {
             <div class="w-[300px] border-solid border-1">
               <el-input
                 v-model="search"
-                placeholder="Nhập từ khoá cần tìm"
+                placeholder="Tìm kiếm"
                 class="input-with-select"
                 size="large"
                 :suffix-icon="Search"
@@ -284,7 +284,7 @@ watch(search, () => {
     </div>
 
     <div class="w-full bg-gray bg-shawdow-footer">
-      <div class="max-w-[1200px] py-5 mx-auto">
+      <div class="max-w-[1500px] py-5 mx-auto">
         <div
           class="w-full mx-auto flex justify-between border-solid border-b border-[#ccc] py-2"
         >
@@ -299,12 +299,12 @@ watch(search, () => {
                 alt="logo"
               />
             </a>
-            <q class="block w-[200px]"
-              >SOMEHOW là bạn đồng hành của người tiêu dùng</q
+            <q class="block w-[240px]"
+              >SOMEHOW mang đến bộ sưu tập thời trang đa dạng và hiện đại, phù hợp với mọi phong cách.</q
             >
           </div>
           <div class="">
-            <h3 class="text-xl px-4 mb-2 font-bold">Chuyển hướng</h3>
+            <h3 class="text-xl px-4 mb-2 font-bold">CHUYỂN HƯỚNG</h3>
             <ul>
               <li>
                 <a
@@ -316,29 +316,65 @@ watch(search, () => {
               <li>
                 <a
                   class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
-                  href="/category/gundam/"
+                  href="/category/bosuutam/sp0"
                   >Bộ sưu tầm</a
                 >
               </li>
               <li>
                 <a
                   class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
-                  href="/category/t1/"
+                  href="/category/phukien/pk0"
                   >Sản phẩm</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="">
+            <h3 class="text-xl px-4 mb-2 font-bold">DỊCH VỤ KHÁCH HÀNG</h3>
+            <ul>
+              <li>
+                <a
+                  class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
+                  href="/about"
+                  >Giới thiệu SomeHow</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
+                  href="/"
+                  >Chính sách đổi trả</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
+                  href="/category/t1/"
+                  >Chương trình ưu đãi sinh nhật khách hàng</a
                 >
               </li>
               <li>
                 <a
                   class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
                   href="/about"
-                  >Giới thiệu</a
+                  >Chương trình Membership</a
                 >
               </li>
+              <li>
+                <a
+                  class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
+                  href="/about"
+                  >Điểm SomeHow là gì ?</a
+                >
+              </li>
+
             </ul>
           </div>
+
           <div>
-            <h3 class="text-xl mb-2 font-bold">Hỗ trợ</h3>
-            <p class="text-[#555] mb-2">Đặt hàng trực tuyến (8h-22h)</p>
+            <h3 class="text-xl mb-2 font-bold">HỖ TRỢ</h3>
+            <p class="text-[#555] mb-2">ĐẶT HÀNG TRỰC TRUYẾN (8h-22h)</p>
             <ul>
               <li class="flex items-center gap-2 text-[#000] font-semibold">
                 <div>
@@ -355,7 +391,7 @@ watch(search, () => {
             </ul>
           </div>
           <div>
-            <h3 class="text-xl mb-2 font-bold">Liên hệ</h3>
+            <h3 class="text-xl mb-2 font-bold">LIÊN HỆ</h3>
             <ul>
               <li class="flex gap-2 mb-2 items-center max-w-[300px]">
                 <el-icon :size="25" color="#555"><Message /></el-icon>
@@ -370,7 +406,7 @@ watch(search, () => {
                 somehowclothing.vn
               </li>
               <li class="flex gap-2 mb-2 items-start max-w-[300px]">
-                <el-icon :size="25" color="#555"><Location /></el-icon>
+                <el-icon :size="2" color="#555"><Location /></el-icon>
                 Nghiêm Xuân Yêm, Đại Kim, Hoàng Mai, Hà Nội 100000
               </li>
             </ul>

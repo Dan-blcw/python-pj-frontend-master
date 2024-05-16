@@ -4,11 +4,11 @@ import Product from "~/components/common/Product.vue";
 
 <template>
   <div
-    class="relative h-[calc(100vh-90px)] mb-10 py-10 bg-[url('https://wallpaper.dog/large/20413086.jpg')] bg-cover bg-no-repeat bg-center bg-fixed"
+    class="relative h-[calc(100vh-100px)] mb-10 py-10 bg-[url('https://wallpaper.dog/large/20413086.jpg')] bg-cover bg-no-repeat bg-center bg-fixed"
   >
     <div class="absolute inset-0 bg-black opacity-60 z-10"></div>
-    <div class="max-w-[1300px] mx-auto relative z-20">
-      <h2 class="text-5xl text-center mb-10 font-extrabold text-white">
+    <div class="max-w-[1500px] mx-auto relative z-20">
+      <h2 class="text-5xl text-center mb-40 font-extrabold text-white">
         KHẲNG ĐỊNH VỊ THẾ
       </h2>
       <div class="pb-20 flex flex-row flex-wrap mx-[-20px] items-center">

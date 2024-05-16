@@ -45,8 +45,8 @@ const getProducts = () =>{
 
 const advertising =
     {
-        img1:'https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/425437770_3724705651096906_6248671884443984155_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=783fdb&_nc_eui2=AeG95qnpifBZVXj1QhVBwS61CJjagTVwokEImNqBNXCiQQ0-EMsZLH55IhXpiaABfJBndSsdLSXgwcEneghG7aGA&_nc_ohc=79Cfa-sJk2gAX_CnQLF&_nc_ht=scontent.fhan15-1.fna&oh=00_AfC9q1wWAjc-YcTut40ezpw-jRPUyGy-CSWTEzie6KEsoA&oe=65C68267',
-        img2:'https://scontent.fhan15-2.fna.fbcdn.net/v/t39.30808-6/407085817_886311356236021_5547675702463138587_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=3635dc&_nc_eui2=AeF-H-l-b6xoTw8x6Tj_zMwHUVifLedF6EBRWJ8t50XoQGchUlWtNfBNoT5OsgingoR4Q00RcOBKVoYFeOQRXg9k&_nc_ohc=WgXrxnYrtmkAX_vVGbR&_nc_ht=scontent.fhan15-2.fna&oh=00_AfCsQ8G-_WDSBvVibdBleNMZ_CAxVXDW3RxxZDf-jUUuhQ&oe=65C80D77 ',
+        img1:'https://i.pinimg.com/564x/85/42/90/8542901e51e4ffd4401796172a6a850c.jpg',
+        img2:'',
     }
 
 
@@ -91,10 +91,10 @@ getProducts()
             <!-- <CategoryProducts> -->
                 <img :src="advertising && advertising.img1 ? advertising.img1 : ''"
                      alt="">
-                <div class="flex items-center justify-center h-10 bg-red-600 my-4 text-white font-semibold">
+                <!-- <div class="flex items-center justify-center h-10 bg-red-600 my-4 text-white font-semibold">
                     T1 SHOP - PHÂN PHỐI CHÍNH HÃNG CÁC SẢN PHẨM CỦA T1, ĐỒ HANMADE T1
-                </div>
-                <img :src="advertising && advertising.img2 ? advertising.img2 : ''" alt="">
+                </div> -->
+                <!-- <img :src="advertising && advertising.img2 ? advertising.img2 : ''" alt=""> -->
                 <div class="flex h-16 items-center bg-gray-500 px-8">
                     <div>
                         <span class="text-white">
@@ -116,25 +116,34 @@ getProducts()
                         </el-select>
                     </div>
                 </div>
-                <div class="w-full grid grid-cols-4 gap-4">
+                <div class="w-3/4 grid grid-cols-4 gap-4">
                     <div v-for="(product, index) in products"
                          :key="index"
                          class="mt-4 hover:mt-1 card-new-product">
-                        <div class="w-full bg-white border border-solid border-gray-300 rounded-xl overflow-hidden cursor-pointer" @click="handleClick(product)">
+                         <div
+                            class="w-full bg-white border border-solid border-gray-300 rounded-xl overflow-hidden cursor-pointer"
+                            @click="handleClick(product)"
+                            >
                             <div class="w-full relative">
-                                <img class="w-full h-full" :src="product.img" alt="">
-                                <div class="w-full py-2 text-center text-white bg-blue-500 uppercase font-semibold absolute bottom-0">
-                                    {{ product.status }}
-                                </div>
+                                <img class="w-full h-full" :src="product.img" alt="" />
                             </div>
-                            <div class=" h-[5rem] text-sm p-3 text-center font-semibold hover:text-blue-800 ">
+                            <p
+                                class="w-full h-[40px] mt-2 text-sm px-2 font-normal hover:text-blue-800 line-clamp-2"
+                            >
                                 {{ product.name }}
-                            </div>
-                            <div class="p-2 text-center border-solid border-t-gray-200 border border-b-blue-300 border-b-2 text-red-600 font-semibold">
-                                {{ product.price }}đ
-                            </div>
-                            <div class="py-2 hover text-center font-bold text-blue-600 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-red-600 transition duration-200">
-                                <el-icon size="20"> <ShoppingCart/> </el-icon>
+                            </p>
+                            <span class="p-2 border-solid text-black font-semibold">
+                                {{
+                                product.price.toLocaleString("vi", {
+                                    style: "currency",
+                                    currency: "VND",
+                                })
+                                }}
+                            </span>
+                            <div
+                                class="py-2 hover text-center font-bold text-blue-600 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-black transition duration-200"
+                            >
+                                <el-icon size="20"> <ShoppingCart /> </el-icon>
                                 Thêm vào giỏ
                             </div>
                         </div>
