@@ -103,22 +103,22 @@ const menu = ref([
     link: "/category/phukien/pk1/",
     children: [
       {
-        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc00194-0376.jpg",
+        img: "",
         title: "PK1",
         link: "/category/phukien/pk1",
       },
       {
-        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc00132-2594.jpg",
+        img: "",
         title: "PK2",
         link: "/category/phukien/pk2",
       },
       {
-        img: "https://i.pinimg.com/564x/20/7f/fd/207ffd733e47c56eb7d3c160bfe754c1.jpg",
+        img: "",
         title: "PK3",
         link: "/category/phukien/pk3",
       },
       {
-        img: "https://i.pinimg.com/564x/0f/b6/b9/0fb6b94bd22842c84ab35006f92888d7.jpg",
+        img: "",
         title: "PK4",
         link: "/category/phukien/pk4",
       },
@@ -129,7 +129,7 @@ const menu = ref([
       link: "/category/phukien/pk0",
     },
     colorBg: "",
-    colorItemSM: "bg-neutral-950",
+    colorItemSM: "bg-white",
     advertising: "https://i.pinimg.com/564x/b3/74/d5/b374d5de39f1c664bfc6c258ccb22566.jpg"
   },
   {
