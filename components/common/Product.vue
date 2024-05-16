@@ -118,8 +118,6 @@ watch(() => props.search, () => {
 <template>
     <div>
         <div v-loading="loading" class="w-4/5 flex flex-col items-center justify-center  mx-auto">
-
-            <!-- <CategoryProducts> -->
                 <img :src="advertising"
                      alt="">
                 <!-- <div class="flex items-center justify-center p-3 bg-red-600 text-white font-semibold">
@@ -189,7 +187,6 @@ watch(() => props.search, () => {
                     :total="formState.total"
                     @currentChange="handleChangePage"
                 />
-            <!-- </CategoryProducts> -->
         </div>
     </div>
 </template>

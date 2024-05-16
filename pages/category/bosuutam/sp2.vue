@@ -3,9 +3,7 @@ import Product from "~/components/common/Product.vue";
 </script>
 
 <template>
-    <product advertising="https://i.ytimg.com/vi/sHmVHHmRueA/maxresdefault.jpg" type="Takara Tomy">
-        T1 SHOP - MÔ HÌNH VÀ THẺ BÀI POKEMON
-    </product>
+    <product advertising="https://theme.hstatic.net/1000026602/1001232314/14/slideshow_1.jpg?v=107" type="sp2"></product>
 </template>
 
 <style lang="scss">

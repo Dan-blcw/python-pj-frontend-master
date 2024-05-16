@@ -48,27 +48,28 @@ const menu = ref([
     link: "/category/bosuutam/sp0/",
     children: [
       {
-        img: "",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc00853-3090.jpg",
         title: "SP1",
         link: "/category/bosuutam/sp1/",
+        
       },
       {
-        img: "",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dscf7532-1948.jpg",
         title: "SP2",
         link: "/category/bosuutam/sp2/",
       },
       {
-        img: "",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc04412-1624.jpg",
         title: "SP3",
         link: "/category/bosuutam/sp3/",
       },
       {
-        img: "",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc07932-1885.jpg",
         title: "SP4",
         link: "/category/bosuutam/sp4/",
       },
       {
-        img: "",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc01761-9312.jpg",
         title: "SP5",
         link: "/category/bosuutam/sp5/",
       },
@@ -80,26 +81,21 @@ const menu = ref([
       {
         img: "",
         title: "SP7",
-        link: "/category/",
+        link: "/category/bosuutam/sp7/",
       },
       {
         img: "",
         title: "SP8",
-        link: "/category/",
+        link: "/category/bosuutam/sp8",
       },
-      // {
-      //   img: "",
-      //   title: "SP9",
-      //   link: "/category/doraemon/",
-      // }
     ],
     mainSubMenu: {
-      img: "",
+      img: "https://i.pinimg.com/564x/45/b7/a0/45b7a0e47682c4a1de0e88ac8bb80763.jpg",
       title: "SP0",
       link: "/category/bosuutam/sp0",
     },
-    colorBg: "bg-amber-600",
-    colorItemSM: "bg-teal-900",
+    colorBg: "",
+    colorItemSM: "bg-white",
   },
   {
     isSubmenu: true,
@@ -107,33 +103,33 @@ const menu = ref([
     link: "/category/phukien/pk1/",
     children: [
       {
-        img: "",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc00194-0376.jpg",
         title: "PK1",
         link: "/category/phukien/pk1",
       },
       {
-        img: "",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc00132-2594.jpg",
         title: "PK2",
         link: "/category/phukien/pk2",
       },
       {
-        img: "",
+        img: "https://i.pinimg.com/564x/20/7f/fd/207ffd733e47c56eb7d3c160bfe754c1.jpg",
         title: "PK3",
         link: "/category/phukien/pk3",
       },
       {
-        img: "",
+        img: "https://i.pinimg.com/564x/0f/b6/b9/0fb6b94bd22842c84ab35006f92888d7.jpg",
         title: "PK4",
         link: "/category/phukien/pk4",
       },
     ],
     mainSubMenu: {
-      img: "",
+      img: "https://i.pinimg.com/564x/38/5a/3e/385a3ec764a9754e0819bb0250b456d7.jpg",
       title: "PK0",
       link: "/category/phukien/pk0",
     },
-    colorBg: "bg-red-500",
-    colorItemSM: "bg-teal-900",
+    colorBg: "",
+    colorItemSM: "bg-neutral-950",
     advertising: "https://i.pinimg.com/564x/b3/74/d5/b374d5de39f1c664bfc6c258ccb22566.jpg"
   },
   {
