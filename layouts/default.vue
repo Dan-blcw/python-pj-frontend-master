@@ -96,7 +96,7 @@ const menu = ref([
     mainSubMenu: {
       img: "",
       title: "SP0",
-      link: "#",
+      link: "/category/bosuutam/sp0",
     },
     colorBg: "bg-amber-600",
     colorItemSM: "bg-teal-900",
@@ -104,7 +104,7 @@ const menu = ref([
   {
     isSubmenu: true,
     title: "Phụ kiện",
-    link: "/category/t1/",
+    link: "/category/phukien/pk0",
     children: [
       {
         img: "",
