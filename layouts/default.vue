@@ -104,7 +104,7 @@ const menu = ref([
   {
     isSubmenu: true,
     title: "Phụ kiện",
-    link: "/category/phukien/pk0",
+    link: "/category/phukien/pk1/",
     children: [
       {
         img: "",
