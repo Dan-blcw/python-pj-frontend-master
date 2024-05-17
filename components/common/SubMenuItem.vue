@@ -20,7 +20,7 @@ const props = defineProps({
         <div class="w-40 h-40 rounded-2xl menu-item-image overflow-hidden cursor-pointer"
              :class="colorItemSM">
             <div class="w-full h-full" :style="`background-image: url('${data.img}')`"></div>
-            <span class="text-teal-500 text-sm " >
+            <span class="text-black text-sm " >
                 {{ data && data.title ? data.title : '' }}
             </span>
         </div>

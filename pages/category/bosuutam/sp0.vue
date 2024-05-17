@@ -25,7 +25,8 @@ const getProducts = () =>{
         params:{
             page: formState.page,
             pageSize: formState.size,
-            search: 'gundam',
+            search: 'Áo thun',
+            // search: '',
         },
 
     }).then( res => {
@@ -46,7 +47,7 @@ const getProducts = () =>{
 const advertising =
     {
         img1:'https://theme.hstatic.net/1000026602/1001232314/14/slideshow_2.jpg?v=107',
-        img2:'https://i.pinimg.com/564x/e5/de/e0/e5dee07399cece6e23146ad9af1554f5.jpg',
+        img2:'',
     }
 
 
@@ -88,7 +89,6 @@ getProducts()
 <template>
     <div>
        <div v-loading="loading" class="w-4/5 flex flex-col items-center justify-center  mx-auto">
-           <!-- <CategoryProducts> -->
                <img :src="advertising && advertising.img1 ? advertising.img1 : ''"
                     alt="" sizes="700px">
                <!-- <div class="flex items-center justify-center p-3 bg-red-600 my-4 teẬT Bxt-white font-semibold">
@@ -156,7 +156,6 @@ getProducts()
                    :total="formState.total"
                    @currentChange="handleChangePage"
                />
-           <!-- </CategoryProducts> -->
        </div>
     </div>
 </template>

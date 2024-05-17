@@ -4,9 +4,7 @@ import Product from "~/components/common/Product.vue";
 </script>
 
 <template>
-    <product advertising="https://cdn.oneesports.vn/cdn-data/sites/4/2023/11/CKTG-2023-T1-Win-1024x576.jpg">
-        T1 SHOP - T1 CLOTHES
-    </product>
+    <product advertising="https://im.uniqlo.com/global-cms/spa/resabc94cad0aa207151507d16e263c3219fr.jpg"  type="Vòng cổ"></product>
 </template>
 
 <style lang="scss">

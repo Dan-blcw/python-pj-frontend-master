@@ -64,7 +64,7 @@ const handleClick = (item) => {
             class="w-full h-full"
             :style="`background-image: url(${getMainSubMenu().img})`"
           ></div>
-          <span class="text-teal-700 text-xl">{{ getMainSubMenu().title }}</span>
+          <span class="text-black text-xl">{{ getMainSubMenu().title }}</span>
         </div>
  
       </div>

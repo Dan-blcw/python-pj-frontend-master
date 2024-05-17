@@ -1,5 +1,5 @@
 <script setup>
-import CategoryProducts from "~/components/common/CategoryProducts.vue";
+
 import { ref } from 'vue'
 import {ShoppingCart} from "@element-plus/icons-vue";
 import {fakeProducts} from "@/constants/fakeData.js"
@@ -26,6 +26,8 @@ const getProducts = () =>{
         params:{
             page: formState.page,
             pageSize: formState.size,
+            // search_string: '',
+            search: 'Mũ',
         },
 
     }).then( res => {
@@ -95,7 +97,7 @@ getProducts()
                     T1 SHOP - PHÂN PHỐI CHÍNH HÃNG CÁC SẢN PHẨM CỦA T1, ĐỒ HANMADE T1
                 </div> -->
                 <!-- <img :src="advertising && advertising.img2 ? advertising.img2 : ''" alt=""> -->
-                <div class="flex h-16 items-center bg-gray-500 px-8">
+                <!-- <div class="flex h-16 items-center bg-gray-500 px-8">
                     <div>
                         <span class="text-white">
                         Sắp xếp theo:
@@ -115,7 +117,7 @@ getProducts()
                             />
                         </el-select>
                     </div>
-                </div>
+                </div> -->
                 <div class="w-3/4 grid grid-cols-4 gap-4">
                     <div v-for="(product, index) in products"
                          :key="index"

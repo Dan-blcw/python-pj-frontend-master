@@ -3,7 +3,7 @@ import Product from "~/components/common/Product.vue";
 </script>
 
 <template>
-    <product advertising="" type="sp7"></product>
+    <product advertising="https://im.uniqlo.com/global-cms/spa/res590371311de4ffd98f31915ef71d0202fr.jpg" type="Áo Cardigan"></product>
 </template>
 
 <style lang="scss">

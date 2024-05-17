@@ -3,11 +3,10 @@ import Product from "~/components/common/Product.vue";
 </script>
 
 <template>
-    <product advertising="https://images2.thanhnien.vn/528068263637045248/2023/11/19/t1-1700399779260275642531.png">
-        T1 SHOP - T1 HANDMADE
-    </product>
+  <product
+    advertising="https://i.pinimg.com/564x/19/1e/3c/191e3caa8c900c79467cf88619c66544.jpg"
+    type="Vòng tay"
+  ></product>
 </template>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

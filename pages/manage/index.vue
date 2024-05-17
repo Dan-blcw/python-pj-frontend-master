@@ -1,18 +1,17 @@
 <script setup>
-import { ref } from 'vue';
-import { useAuthStore } from '~/stores/auth.js';
-import Thongke from '~/components/manage/Thongke.vue';
-import QuanlyProduct from '~/components/manage/QuanlyProduct.vue';
-import QuanlyOrder from '~/components/manage/QuanlyOrder.vue';
-import QuanlyAccount from '~/components/manage/QuanlyAccount.vue';
-
+import { ref } from "vue";
+import { useAuthStore } from "~/stores/auth.js";
+import Thongke from "~/components/manage/Thongke.vue";
+import QuanlyProduct from "~/components/manage/QuanlyProduct.vue";
+import QuanlyOrder from "~/components/manage/QuanlyOrder.vue";
+import QuanlyAccount from "~/components/manage/QuanlyAccount.vue";
 
 definePageMeta({
-  layout: 'admin',
-  middleware: 'auth'
+  layout: "admin",
+  middleware: "auth",
 });
 
-const active = ref('1');
+const active = ref("1");
 const auth = useAuthStore();
 
 const logOut = () => {
@@ -40,16 +39,18 @@ const handleChange = (key) => {
       class="menu"
       @select="handleChange"
     >
-    <el-menu-item class="mb-20" index="0">
-                    <img class="h-32 mt-20 ml-10"
-                         src="https://i.pinimg.com/564x/3c/07/40/3c0740017fa1c2ca4b529179ef1ffb08.jpg"
-                         alt="">
-    </el-menu-item> 
+      <el-menu-item class="mb-20" index="0">
+        <img
+          class="h-32 mt-20 ml-10"
+          src="https://i.pinimg.com/564x/3c/07/40/3c0740017fa1c2ca4b529179ef1ffb08.jpg"
+          alt=""
+        />
+      </el-menu-item>
 
-      <el-menu-item @click="Home">
+      <!-- <el-menu-item @click="Home">
         <i class="el-icon-s-home"></i>
         <span>Home</span>
-      </el-menu-item>
+      </el-menu-item> -->
       <el-menu-item index="2">
         <i class="el-icon-goods"></i>
         <span>Thống Kế</span>
@@ -72,7 +73,7 @@ const handleChange = (key) => {
       </el-menu-item>
     </el-menu>
 
-    <div class="content" >
+    <div class="content">
       <Thongke v-if="active === '2'" class="content-section" />
       <QuanlyProduct v-if="active === '3'" class="content-section" />
       <QuanlyOrder v-if="active === '4'" class="content-section" />
@@ -81,9 +82,7 @@ const handleChange = (key) => {
   </div>
 </template>
 
-
 <style scoped>
-
 .container {
   display: flex;
   width: 100%;
@@ -106,17 +105,14 @@ const handleChange = (key) => {
 }
 
 .content-section {
-
   height: 100%;
-  background: #E4E7E6;
+  background: #e4e7e6;
   border-radius: 8px;
   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
   justify-content: center;
   align-items: center;
 }
 </style>
-
-
 
 <!-- <script setup>
 import TableProduct from "~/components/manage/TableProduct.vue";
@@ -160,7 +156,7 @@ const handleChange = (key) => {
                          src="https://1.bp.blogspot.com/-R8gnX_mf-hI/XZwpsZoVyNI/AAAAAAAADOc/zfTGRKC1VyUVP2hxELrNk04TJTrHDg0mQCLcBGAsYHQ/s0/72487982_2513824035518413_4387733843654737920_n.png"
                          alt="">
                 </el-menu-item> -->
-                <!-- <el-menu-item index="0">
+<!-- <el-menu-item index="0">
                     <span>Chung</span>
                 </el-menu-item>
                 <el-menu-item index="1">
@@ -189,4 +185,3 @@ const handleChange = (key) => {
 <style lang="scss">
 
 </style>  -->
-

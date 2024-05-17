@@ -3,7 +3,7 @@ import Product from "~/components/common/Product.vue";
 </script>
 
 <template>
-    <product advertising="https://sherifstore.click/static/media/banner2.ad24901f3755b7bc537e.webp" type="sp1"></product>
+    <product advertising="https://sherifstore.click/static/media/banner2.ad24901f3755b7bc537e.webp" type="Áo thun"></product>
 </template>
 
 <style lang="scss">

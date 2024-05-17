@@ -48,50 +48,49 @@ const menu = ref([
     link: "/category/bosuutam/sp0/",
     children: [
       {
-        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc00853-3090.jpg",
-        title: "SP1",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dscf8523-7546.jpg",
+        title: "Áo thun",
         link: "/category/bosuutam/sp1/",
-        
       },
       {
-        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dscf7532-1948.jpg",
-        title: "SP2",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dscf9425-5240.jpg",
+        title: "Áo sơ mi",
         link: "/category/bosuutam/sp2/",
       },
       {
         img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc04412-1624.jpg",
-        title: "SP3",
+        title: "Áo khoác",
         link: "/category/bosuutam/sp3/",
       },
       {
-        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc07932-1885.jpg",
-        title: "SP4",
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc06332-0458.jpg",
+        title: "Quần dài",
         link: "/category/bosuutam/sp4/",
       },
       {
         img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc01761-9312.jpg",
-        title: "SP5",
+        title: "Quần đùi",
         link: "/category/bosuutam/sp5/",
       },
       {
-        img: "",
-        title: "SP6",
+        img: "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/468736/item/vngoods_02_468736.jpg?width=750",
+        title: "Áo Bra",
         link: "/category/bosuutam/sp6/",
       },
       {
-        img: "",
-        title: "SP7",
+        img: "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/468541/item/vngoods_01_468541.jpg?width=750",
+        title: "Áo Cardigan",
         link: "/category/bosuutam/sp7/",
       },
       {
-        img: "",
-        title: "SP8",
+        img: "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/466575004/item/vngoods_69_466575004.jpg?width=750",
+        title: "Đầm",
         link: "/category/bosuutam/sp8",
       },
     ],
     mainSubMenu: {
       img: "https://i.pinimg.com/564x/45/b7/a0/45b7a0e47682c4a1de0e88ac8bb80763.jpg",
-      title: "SP0",
+      title: "Tất cả",
       link: "/category/bosuutam/sp0",
     },
     colorBg: "",
@@ -100,37 +99,48 @@ const menu = ref([
   {
     isSubmenu: true,
     title: "Phụ kiện",
-    link: "/category/phukien/pk1/",
+    link: "/category/phukien/pk0",
     children: [
       {
-        img: "",
-        title: "PK1",
+        img: "https://i.pinimg.com/564x/40/7e/ed/407eed017906671ebc4153f5f6738808.jpg",
+        title: "Vòng Tay",
         link: "/category/phukien/pk1",
       },
       {
-        img: "",
-        title: "PK2",
+        img: "https://i.pinimg.com/564x/9e/ca/ce/9ecace8db35b6a19611d322cf1940451.jpg",
+        title: "Khuyên tai",
         link: "/category/phukien/pk2",
       },
       {
-        img: "",
-        title: "PK3",
+        img: "https://i.pinimg.com/564x/49/15/1f/49151f220b261b8b3e298b85d2d1716a.jpg",
+        title: "Nhẫn",
         link: "/category/phukien/pk3",
       },
       {
-        img: "",
-        title: "PK4",
+        img: "https://i.pinimg.com/736x/50/60/d1/5060d101e17d2c419846eb28bdcbfb93.jpg",
+        title: "Vòng cổ",
         link: "/category/phukien/pk4",
+      },
+      {
+        img: "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/468673/item/goods_61_468673.jpg?width=750",
+        title: "Túi",
+        link: "/category/phukien/pk5",
+      },
+      {
+        img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/img_4974-5698.JPG",
+        title: "Mũ",
+        link: "/category/phukien/pk6",
       },
     ],
     mainSubMenu: {
       img: "https://i.pinimg.com/564x/38/5a/3e/385a3ec764a9754e0819bb0250b456d7.jpg",
-      title: "PK0",
+      title: "Tất cả",
       link: "/category/phukien/pk0",
     },
     colorBg: "",
     colorItemSM: "bg-white",
-    advertising: "https://i.pinimg.com/564x/b3/74/d5/b374d5de39f1c664bfc6c258ccb22566.jpg"
+    advertising:
+      "https://i.pinimg.com/564x/b3/74/d5/b374d5de39f1c664bfc6c258ccb22566.jpg",
   },
   {
     isSubmenu: false,
@@ -228,7 +238,7 @@ watch(search, () => {
               class="cursor-pointer hover:text-blue-600 transition duration-200"
               @click="$router.push('/cart')"
             >
-              <el-icon size="34"><ShoppingCart /></el-icon>
+              <el-icon size="30"><ShoppingCart /></el-icon>
             </el-badge>
             <div
               class="text-base"
@@ -249,22 +259,41 @@ watch(search, () => {
               </nuxt-link>
             </div>
             <div v-else>
-              <span> Xin chào, {{ auth.$state.user.username }} </span>
-              <el-divider direction="vertical" />
-              <nuxt-link to="/myorder">
-                <span
-                  class="cursor-pointer hover:underline hover:text-[#409eff]"
-                >
-                  Đơn hàng của tôi
-                </span>
-              </nuxt-link>
-              <el-divider direction="vertical" />
-              <span
-                class="cursor-pointer hover:underline hover:text-[#409eff]"
-                @click="logOut"
+              <div
+                class="relative w-10 h-10 rounded-full bg-slate-500 flex items-center justify-center cursor-pointer userAccount_icon"
               >
-                Đăng xuất
-              </span>
+                <User class="text-white w-6 h-6 font-bold" />
+                <div
+                  class="absolute top-[110%] right-0 min-w-[200px] px-5 py-2 flex flex-col bg-white rounded menuNested"
+                >
+                  <span
+                    class="cursor-pointer py-2 px-4 text-base hover:underlin"
+                  >
+                    Xin chào, {{ auth.$state.user.username }}
+                  </span>
+
+                  <nuxt-link to="/myorder">
+                    <div
+                      class="cursor-pointer py-2 px-4 text-base hover:underline hover:text-[#409eff]"
+                    >
+                      Đơn hàng của tôi
+                    </div>
+                  </nuxt-link>
+                  <nuxt-link to="/account">
+                    <div
+                      class="cursor-pointer py-2 px-4 text-base hover:underline hover:text-[#409eff]"
+                    >
+                      Quản lý tài khoản
+                    </div>
+                  </nuxt-link>
+                  <div
+                    class="cursor-pointer py-2 px-4 text-base hover:underline hover:text-[#409eff]"
+                    @click="logOut"
+                  >
+                    Đăng xuất
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -296,7 +325,8 @@ watch(search, () => {
               />
             </a>
             <q class="block w-[240px]"
-              >SOMEHOW mang đến bộ sưu tập thời trang đa dạng và hiện đại, phù hợp với mọi phong cách.</q
+              >SOMEHOW mang đến bộ sưu tập thời trang đa dạng và hiện đại, phù
+              hợp với mọi phong cách.</q
             >
           </div>
           <div class="">
@@ -364,7 +394,6 @@ watch(search, () => {
                   >Điểm SomeHow là gì ?</a
                 >
               </li>
-
             </ul>
           </div>
 
@@ -801,7 +830,6 @@ watch(search, () => {
   height: auto; /* Maintain aspect ratio */
 }
 </style> -->
-
 
 <!-- <script setup>
 import MenuItem from "@/components/common/MenuItem.vue";
@@ -1687,7 +1715,7 @@ watch(search, () => {
         </div>
     </div>
 </template> -->
-        <!-- <div class="w-full">
+<!-- <div class="w-full">
             <div class="w-full h-24 bg-yellow-300 mt-10 flex justify-center items-center justify-evenly">
                 <div class="p-6 border-solid border-black">
                     <p>
@@ -1832,13 +1860,11 @@ watch(search, () => {
 
             </div>
         </div> -->
-    <!-- </div>
+<!-- </div>
 </template> -->
 
-<style lang="scss" >
-.el-message{
-    z-index: 9999 !important;
+<style lang="scss">
+.el-message {
+  z-index: 9999 !important;
 }
-
-
 </style>
