@@ -3,7 +3,7 @@ import Danhsachsanphammoi from "~/components/common/Danhsachsanphammoi.vue";
 import Danhsachsanphambanchay from "~/components/common/Danhsachsanphambanchay.vue";
 import Danhsachsanphamchung0 from "~/components/common/Danhsachsanphamchung0.vue";
 import Danhsachsanphamchung1 from "~/components/common/Danhsachsanphamchung1.vue";
- 
+
 const intervalImg = ref();
 const checkInterval = ref(false);
 const handleClickItem = (index, isInterval = false) => {
@@ -23,7 +23,7 @@ const handleClickItem = (index, isInterval = false) => {
     }
   }
 };
- 
+
 onMounted(() => {
   checkInterval.value = true;
   intervalImg.value = setInterval(() => {
@@ -42,12 +42,12 @@ onMounted(() => {
     }, 2000);
   }, 6000);
 });
- 
+
 onUnmounted(() => {
   clearInterval(intervalImg.value);
 });
 </script>
- 
+
 <template>
   <div class="flex flex-col">
     <div class="picture-paddyfield h-[730px]">
@@ -96,27 +96,24 @@ onUnmounted(() => {
         </div>
       </div>
     </div>
- 
+
     <div
       class="max-w-[1250px] flex flex-col items-center justify-center mt-10 mx-auto"
     >
-      <div class="w-full">
+      <div class="w-full mb-10">
+        <Danhsachsanphammoi />
 
-          <Danhsachsanphammoi/>
- 
-          <Danhsachsanphambanchay />
- 
-          <Danhsachsanphamchung0 />
- 
-          <Danhsachsanphamchung1 />
+        <Danhsachsanphambanchay />
+
+        <Danhsachsanphamchung0 />
+
+        <Danhsachsanphamchung1 />
       </div>
     </div>
   </div>
 </template>
- 
+
 <style lang="scss"></style>
-
-
 
 <!-- <script setup>
 import MenuNewProducts from "~/components/common/MenuNewProducts.vue";

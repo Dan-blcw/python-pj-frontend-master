@@ -6,7 +6,8 @@ import Product from "~/components/common/Product.vue";
   <product
     advertising="https://i.pinimg.com/564x/19/1e/3c/191e3caa8c900c79467cf88619c66544.jpg"
     type="Vòng tay"
-  ></product>
+    >VÒNG TAY</product
+  >
 </template>
 
 <style lang="scss"></style>

@@ -23,39 +23,6 @@ const auth = useAuthStore();
 const num = ref(1);
 const textarea2 = ref("");
 const activeName = ref("first");
-// const detailInfo = ref(
-//     {
-//         name: 'Mô hình Gundam MG 1/100 ASW-G-08 Gundam Barbatos - Bandai - GDMG0004',
-//         description: '1 2 3 test mic alo alo',
-//         price: '1 ti dong :)))',
-//         type: 'Gundam',
-//         detailIMg: [
-//             {
-//                 img: 'https://herogame.vn/upload/images/img_10_04_2023/mo-hinh-gundam-mg-1-100-asw-g-08-gundam-barbatos-bandai-gdmg0004-1_434072_6433dfd319b4d1.71893000.jpg',
-//             },
-//             {
-//                 img: 'https://herogame.vn/upload/images/img_10_04_2023/mo-hinh-gundam-mg-1-100-asw-g-08-gundam-barbatos-bandai-gdmg0004-1_434072_6433dfd319b4d1.71893000.jpg',
-//             },
-//             {
-//                 img: 'https://herogame.vn/upload/images/img_10_04_2023/mo-hinh-gundam-mg-1-100-asw-g-08-gundam-barbatos-bandai-gdmg0004-1_434072_6433dfd319b4d1.71893000.jpg',
-//             },
-//             {
-//                 img: 'https://herogame.vn/upload/images/img_10_04_2023/mo-hinh-gundam-mg-1-100-asw-g-08-gundam-barbatos-bandai-gdmg0004-1_434072_6433dfd319b4d1.71893000.jpg',
-//             },
-//             {
-//                 img: 'https://herogame.vn/upload/images/img_10_04_2023/mo-hinh-gundam-mg-1-100-asw-g-08-gundam-barbatos-bandai-gdmg0004-1_434072_6433dfd319b4d1.71893000.jpg',
-//             },
-//             {
-//                 img: 'https://herogame.vn/upload/images/img_10_04_2023/mo-hinh-gundam-mg-1-100-asw-g-08-gundam-barbatos-bandai-gdmg0004-1_434072_6433dfd319b4d1.71893000.jpg',
-//             },
-//         ],
-//     }
-// )
-// const zoomImg = () => {
-//     // console.log($("#zoom_01"))
-//     // $("#zoom_01").ezPlus()
-// }
-
 const getProducts = () => {
   spaFetch(false)($apiUrl.PRODUCT, {
     method: "GET",
@@ -389,123 +356,92 @@ getProducts();
         </div>
       </div>
 
-      <!-- <div v-loading="loading" class="w-full flex mt-10 justify-center">
-                <div class="flex flex-col items-center">
-                    <div class="w-[450px] h-[650px] bg-gray-400 flex items-center justify-center">
-                        <div id="samples" class="relative">
-                            <img id="zoom1"
-                                :src="dataDetail && dataDetail.img ? dataDetail.img : ''"
-                                alt=""
-                                @mousemove="zoomIn"
-                                @mouseout="zoomOut">
-                            <div id="preview"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ml-20 flex flex-col gap-y-3 w-[600px]">
-                    <div class="text-[1.85rem] text-[#17649a] font-semibold">
-                        {{ dataDetail && dataDetail.name ? dataDetail.name : '' }}
-                    </div>
-
-                    <div class="text-black italic">
-                        {{ dataDetail && dataDetail.description ? dataDetail.description : '' }}
-                    </div>
-
-                    <div class="flex text-black text-lg items-baseline">
-                        Giá tiền :
-                        <div class="font-semibold text-red-500 text-2xl ml-10">
-                            {{ dataDetail && dataDetail.price ? dataDetail.price : 0 }} đ
-                        </div>
-                    </div>
-
-                    <div class="flex text-black text-lg items-baseline">
-                        Trạng thái :
-                        <div class="font-semibold text-green-500 text-lg ml-4 uppercase"> Còn Hàng</div>
-                    </div>
-
-                    <div class="flex text-black text-lg items-baseline">
-                        Danh mục :
-                        <div class="font-semibold text-blue-700 text-lg ml-4 underline hover:text-blue-500 cursor-pointer">
-                            {{ dataDetail && dataDetail.type ? dataDetail.type : '' }}
-                        </div>
-                    </div>
-
-                    <div class="flex text-black text-lg items-baseline flex-wrap gap-y-1">
-                        Từ khoá :
-                        <div class="font-semibold text-white text-lg ml-4 bg-blue-600 px-2 rounded-lg hover:bg-blue-500">
-                            {{ dataDetail && dataDetail.type ? dataDetail.type : '' }}
-                        </div>
-                        <div class="font-semibold text-white text-lg ml-4 bg-blue-600 px-2 rounded-lg hover:bg-blue-500">
-                            {{ dataDetail && dataDetail.name ? dataDetail.name : '' }}
-                        </div>
-                    </div>
-
-                    <div class="flex my-10 gap-x-32 items-center">
-                        <el-input-number class="h-20" v-model="num" size="large" :min="1" @change="handleChange"/>
-                        <div class="flex h-20 bg-red-600 items-center justify-center px-10 gap-x-6 hover:bg-red-500 cursor-pointer"
-                            @click="handleAddProductToCart" v-loading="loadingAdd">
-                            <el-icon color="white" size="40">
-                                <ShoppingCart/>
-                            </el-icon>
-                            <p class="uppercase text-white text-2xl">Thêm vào giỏ</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-      <div class="mt-12 w-full">
-        <div class="text-black text-lg text-[1.05rem] font-semibold">
-          Hướng dẫn cách đo kích thước sản phẩm:
+      <div class="w-full translate-x-[5%]">
+        <div>
+          <div class="flex-container flex items-start">
+            <div class="table-container flex-1">
+              <div
+                class="text-black text-lg text-[1.05rem] font-semibold relative"
+              >
+                Hướng dẫn cách đo kích thước sản phẩm:
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Size</th>
+                    <th>Vai</th>
+                    <th>Ngực</th>
+                    <th>Tay Áo</th>
+                    <th>Dài Áo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>S</td>
+                    <td>42</td>
+                    <td>104</td>
+                    <td>57</td>
+                    <td>64</td>
+                  </tr>
+                  <tr>
+                    <td>M</td>
+                    <td>44</td>
+                    <td>108</td>
+                    <td>58</td>
+                    <td>66</td>
+                  </tr>
+                  <tr>
+                    <td>L</td>
+                    <td>46</td>
+                    <td>112</td>
+                    <td>59</td>
+                    <td>68</td>
+                  </tr>
+                  <tr>
+                    <td>XL</td>
+                    <td>48</td>
+                    <td>116</td>
+                    <td>60</td>
+                    <td>70</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                *Dữ liệu này có được bằng cách đo thủ công sản phẩm, các phép đo
+                có thể bị thay đổi 1-2 CM.
+              </p>
+              <div
+                class="text-black text-lg text-[1.05rem] font-semibold relative mt-0 mb-1"
+              >
+                Cách đo kích thước sản phẩm ?
+              </div>
+              <p class="mb-1">
+                1.Vai____________Đo Từ đỉnh vai bên này sang bên kia.
+              </p>
+              <p class="mb-1">
+                2. Ngực_________Từ nách hạ xuống 2cm, đo thẳng từ nách bên này
+                sang nách bên kia.
+              </p>
+              <p class="mb-1">
+                3.Chiều dài_____ Đo thân trước từ sát mí chân cổ trước đến lai
+                áo.
+              </p>
+              <p class="mb-1">
+                4.Tay áo________Đo từ đỉnh vai đến cuối tay áo.
+              </p>
+            </div>
+            <div class="flex w-1/3">
+              <img
+                class="image"
+                src="https://file.hstatic.net/1000026602/file/icon-02_700ef0b03438414f812433a5b797f044.jpg"
+              />
+            </div>
+          </div>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Size</th>
-              <th>Vai</th>
-              <th>Ngực</th>
-              <th>Tay Áo</th>
-              <th>Dài Áo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>S</td>
-              <td>42</td>
-              <td>104</td>
-              <td>57</td>
-              <td>64</td>
-            </tr>
-            <tr>
-              <td>M</td>
-              <td>44</td>
-              <td>108</td>
-              <td>58</td>
-              <td>66</td>
-            </tr>
-            <tr>
-              <td>L</td>
-              <td>46</td>
-              <td>112</td>
-              <td>59</td>
-              <td>68</td>
-            </tr>
-            <tr>
-              <td>XL</td>
-              <td>48</td>
-              <td>116</td>
-              <td>60</td>
-              <td>70</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          *Dữ liệu này có được bằng cách đo thủ công sản phẩm, các phép đo có
-          thể bị thay đổi 1-2 CM.
-        </p>
       </div>
 
       <!-- Start Danh gia -->
-      <div class="w-full mt-12">
+      <div class="w-11/12 mt-0 translate-x-[-0%]">
         <el-tabs
           v-model="activeName"
           type="border-card"
@@ -513,112 +449,112 @@ getProducts();
           stretch
         >
           <el-tab-pane label="Đánh giá" name="first">
-            <div class="flex justify-between mb-4">
-              <p>0 bình luận</p>
+            <div class="comments-header">
+              <p>2 bình luận</p>
               <p>Sắp xếp theo</p>
             </div>
+            <div class="comment">
+              <p class="comment-author">Michael</p>
+              <p class="comment-text">
+                Dry -EX does it again. During this hot summer, shirt is very
+                comfortable to wear.
+              </p>
+              <p class="comment-date">17/05/2024</p>
+            </div>
+            <div class="comment">
+              <p class="comment-author">Dan</p>
+              <p class="comment-text">
+                The design is great and has good material, the fit is
+                comfortable and true to size, would definitely reccomend to
+                others
+              </p>
+              <p class="comment-date">26/05/2024</p>
+            </div>
+
             <el-input
               v-model="textarea2"
               :autosize="{ minRows: 2, maxRows: 4 }"
               type="textarea"
               placeholder="Nhập bình luận ..."
             />
-            <div class="mt-4 text-right">
+            <div class="text-right">
               <el-button type="primary" plain>Đăng</el-button>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="Quyền lợi" name="second">
-            <el-descriptions
-              :column="1"
-              title="Được gì khi mua máy tại HEROGAME ?"
-            >
-              <el-descriptions-item
-                >- Giảm giá 100k khi mua MÁY lần sau</el-descriptions-item
-              >
-              <el-descriptions-item
-                >- Phụ kiện zin theo máy</el-descriptions-item
-              >
-              <el-descriptions-item
-                >- Đổi máy mới trong 7 ngày khi máy gặp lỗi của NSX, hoàn tiền
-                100% khi không còn máy đổi
-              </el-descriptions-item>
-              <el-descriptions-item
-                >- Tích lũy điểm giảm giá cho những đơn hàng sau
-              </el-descriptions-item>
-              <el-descriptions-item
-                >- Bảo hành phần mềm trong suốt quá trình sử dụng
-              </el-descriptions-item>
-              <el-descriptions-item
-                >- Hỗ trợ sửa chữa cho khách hàng khi máy hết BH
-              </el-descriptions-item>
-              <el-descriptions-item
-                >- Hỗ trợ đổi máy/ lên đời khi vẫn còn BH</el-descriptions-item
-              >
-              <el-descriptions-item
-                >- Cập nhập Firmware mới liên tục cho các dòng máy
-              </el-descriptions-item>
-            </el-descriptions>
+
+          <el-tab-pane label="Tin tức Mẹo" name="fourth">
+            <div class="news-section">
+              <h2 class="news-title">Các bài viết mới</h2>
+              <div class="bank-info">
+                <h3 class="news-item-title">
+                  5 Mẹo giúp tăng tuổi thọ của thiết bị điện tử
+                </h3>
+                <p class="news-item-description">
+                  Hãy áp dụng những mẹo nhỏ sau để thiết bị điện tử của bạn có
+                  tuổi thọ cao hơn.
+                </p>
+              </div>
+              <div class="bank-info">
+                <h3 class="news-item-title">
+                  Cách chọn máy tính xách tay phù hợp với nhu cầu sử dụng của
+                  bạn
+                </h3>
+                <p class="news-item-description">
+                  Đây là những gợi ý giúp bạn chọn được chiếc laptop phù hợp với
+                  công việc và sở thích cá nhân.
+                </p>
+              </div>
+              <div class="bank-info">
+                <h3 class="news-item-title">
+                  Những xu hướng công nghệ nổi bật năm 2024
+                </h3>
+                <p class="news-item-description">
+                  Cùng khám phá những xu hướng công nghệ mới nhất và đang được
+                  chú ý trong năm 2024.
+                </p>
+              </div>
+              <!-- Add more news items as needed -->
+            </div>
           </el-tab-pane>
-          <el-tab-pane label="Thanh toán" name="third">
-            <el-descriptions :column="1" title="Thanh toán">
-              <el-descriptions-item
-                >- Áp dụng thanh toán quẹt thẻ ATM/VISA/MASTER
-              </el-descriptions-item>
-              <el-descriptions-item
-                >- Có thanh toán chuyển khoản online /
-                Momo</el-descriptions-item
-              >
-            </el-descriptions>
-            <el-descriptions :column="1" title="">
-              <el-descriptions-item
-                ><span class="text-[#ff0000] font-semibold text-xl ml-16"
-                  >CHI NHÁNH HỒ CHÍ MINH</span
-                >
-              </el-descriptions-item>
-              <el-descriptions-item
-                ><span class="text-black font-semibold"
-                  >NGÂN HÀNG VIETCOMBANK</span
-                ></el-descriptions-item
-              >
-              <el-descriptions-item label="Số tài khoản:"
-                ><span class="text-black font-semibold">83860101002</span>
-              </el-descriptions-item>
-              <el-descriptions-item label="Chủ tài khoản:"
-                ><span class="text-black font-semibold">NGUYỄN KỲ NAM</span>
-              </el-descriptions-item>
-            </el-descriptions>
-            <el-descriptions :column="1" title="">
-              <el-descriptions-item
-                ><span class="text-[#ff0000] font-semibold text-xl ml-16"
-                  >CHI NHÁNH HÀ NỘI</span
-                >
-              </el-descriptions-item>
-              <el-descriptions-item
-                ><span class="text-black font-semibold"
-                  >NGÂN HÀNG VIETCOMBANK (Chi nhánh: Tây Hà Nội)</span
-                >
-              </el-descriptions-item>
-              <el-descriptions-item label="Số tài khoản:"
-                ><span class="text-black font-semibold">83860101002</span>
-              </el-descriptions-item>
-              <el-descriptions-item label="Chủ tài khoản:"
-                ><span class="text-black font-semibold">NGUYỄN KỲ NAM</span>
-              </el-descriptions-item>
-              <el-descriptions-item
-                ><span class="text-[#ff0000] font-semibold text-lg"
-                  >* Lưu ý : Chuyển khoản với cú pháp là : "Số điện thoại" - Sau
-                  khi chuyển khoản vui lòng liên hệ Zalo hoặc fan page để xác
-                  nhận.</span
-                >
-              </el-descriptions-item>
-            </el-descriptions>
+
+          <el-tab-pane label="Thanh toán" name="payment">
+            <div class="payment-section">
+              <h2 class="payment-title">Thông tin thanh toán</h2>
+              <div class="bank-info">
+                <h3 class="branch-header">CHI NHÁNH HỒ CHÍ MINH</h3>
+                <p class="bank-name">Ngân hàng: VIETCOMBANK</p>
+                <p class="account-number">
+                  <span class="label">Số tài khoản:</span> 83860101002
+                </p>
+                <p class="account-holder">
+                  <span class="label">Chủ tài khoản:</span> Dan
+                </p>
+              </div>
+              <div class="bank-info">
+                <h3 class="branch-header">CHI NHÁNH HÀ NỘI</h3>
+                <p class="bank-name">
+                  Ngân hàng: VIETCOMBANK (Chi nhánh: Tây Hà Nội)
+                </p>
+                <p class="account-number">
+                  <span class="label">Số tài khoản:</span> 83860101002
+                </p>
+                <p class="account-holder">
+                  <span class="label">Chủ tài khoản:</span> Dan
+                </p>
+                <p class="note">
+                  * Lưu ý: Vui lòng chuyển khoản theo định dạng: "Số điện thoại"
+                  - Sau khi chuyển khoản, vui lòng liên hệ chúng tôi qua Zalo
+                  hoặc trang fan page để xác nhận.
+                </p>
+              </div>
+            </div>
           </el-tab-pane>
         </el-tabs>
       </div>
       <!-- End: danh gia -->
 
       <!-- Goi y san pham -->
-      <div class="w-full mt-12 mb-5">
+      <div class="w-full mt-6 mb-6">
         <div
           class="w-2/5 bg-cyan-700 translate-x-[75%] flex h-[45px] justify-center items-center text-white font-semibold text-lg rounded-xl"
         >
@@ -677,25 +613,129 @@ getProducts();
 </template>
 
 <style lang="scss">
-.demo-tabs > .el-tabs__content {
-  padding: 32px;
-  color: #6b778c;
-  font-size: 15px;
+// .demo-tabs > .el-tabs__content {
+//   padding: 32px;
+//   color: #6b778c;
+//   font-size: 15px;
+//   font-weight: 600;
+// }
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+.table-container {
+  flex: 1;
+}
+.image-container {
+  margin-left: 20px; /* Optional: Adjust the spacing between the table and image */
+}
+
+// .demo-tabs .el-tabs__item {
+//   font-size: 18px;
+//   font-weight: 300;
+// }
+
+// .el-descriptions__title {
+//   color: red;
+// }
+.demo-tabs {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+.demo-tabs .el-tab-pane {
+  padding: 20px;
+}
+.demo-tabs .el-tabs__header {
+  margin-bottom: 5px;
+}
+.comments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 16px;
   font-weight: 600;
 }
-
-.demo-tabs .el-tabs__item {
-  font-size: 18px;
-  font-weight: 300;
+.comment {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+.comment-author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.comment-text {
+  margin-bottom: 5px;
+}
+.comment-date {
+  font-size: 12px;
+  color: #888;
+}
+.el-input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.text-right {
+  text-align: right;
+}
+.el-button {
+  border-radius: 5px;
+}
 .el-descriptions__title {
-  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.el-descriptions-item {
+  margin-bottom: 10px;
+}
+.branch-header {
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+}
+.bank-info {
+  font-weight: bold;
+}
+.note {
+  color: #ff0000;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+}
+.demo-tabs {
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 10px;
+}
+.news-section {
+  padding: 12px;
+}
+.news-title {
+  font-size: 28px;
+  font-family: cursive;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.news-item {
+  margin-bottom: 20px;
+}
+.news-item-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.news-item-description {
+  color: #666;
 }
 
 table,
@@ -721,7 +761,47 @@ h2 {
 ol {
   margin-left: 20px;
 }
-
+/* Styles for the new payment tab */
+.payment-section {
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+}
+.payment-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px;
+}
+.branch-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2a97a2;
+  margin-bottom: 10px;
+}
+.bank-info {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+}
+.bank-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+.account-number,
+.account-holder,
+.note {
+  font-size: 16px;
+  color: #666;
+  margin-top: 5px;
+}
+.label {
+  font-weight: bold;
+  color: #333;
+}
 #preview {
   visibility: hidden;
   border: 2px solid black;
@@ -750,7 +830,11 @@ ol {
   display: block;
   border: 2px solid #6a6462;
 }
-
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 #samples img:hover {
   cursor: zoom-in;
   border: 0;

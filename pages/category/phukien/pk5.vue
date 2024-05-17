@@ -1,12 +1,13 @@
 <script setup lang="ts">
-
 import Product from "~/components/common/Product.vue";
 </script>
 
 <template>
-    <product advertising="https://theme.hstatic.net/1000026602/1001232314/14/img-banner-index.jpg?v=107" type="Túi"></product>
+  <product
+    advertising="https://theme.hstatic.net/1000026602/1001232314/14/img-banner-index.jpg?v=107"
+    type="Túi"
+    >TÚI</product
+  >
 </template>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
