@@ -202,7 +202,7 @@ watch(search, () => {
         <div
           class="max-w-[1300px] flex flex-row justify-between items-center mx-auto text-base"
         >
-          <div class="flex items-center gap-10">
+          <div class="flex items-center gap-5">
             <a href="/">
               <img
                 class="w-[200px] object-cover"
@@ -232,13 +232,13 @@ watch(search, () => {
               />
             </div>
           </nav>
-          <div class="flex items-center gap-10">
+          <div class="flex items-start gap-16">
             <el-badge
               :value="auth.$state.quantityInCart"
               class="cursor-pointer hover:text-blue-600 transition duration-200"
               @click="$router.push('/cart')"
             >
-              <el-icon size="30"><ShoppingCart /></el-icon>
+              <el-icon size="28"><ShoppingCart /></el-icon>
             </el-badge>
             <div
               class="text-base"
@@ -260,7 +260,7 @@ watch(search, () => {
             </div>
             <div v-else>
               <div
-                class="relative w-10 h-10 rounded-full bg-slate-500 flex items-center justify-center cursor-pointer userAccount_icon"
+                class="relative w-7 h-7 rounded-full bg-cyan-700 flex items-center justify-center cursor-pointer userAccount_icon"
               >
                 <User class="text-white w-6 h-6 font-bold" />
                 <div
@@ -271,19 +271,18 @@ watch(search, () => {
                   >
                     Xin chào, {{ auth.$state.user.username }}
                   </span>
-
-                  <nuxt-link to="/myorder">
-                    <div
-                      class="cursor-pointer py-2 px-4 text-base hover:underline hover:text-[#409eff]"
-                    >
-                      Đơn hàng của tôi
-                    </div>
-                  </nuxt-link>
                   <nuxt-link to="/account">
                     <div
                       class="cursor-pointer py-2 px-4 text-base hover:underline hover:text-[#409eff]"
                     >
                       Quản lý tài khoản
+                    </div>
+                  </nuxt-link>
+                  <nuxt-link to="/myorder">
+                    <div
+                      class="cursor-pointer py-2 px-4 text-base hover:underline hover:text-[#409eff]"
+                    >
+                      Quản lý đơn hàng
                     </div>
                   </nuxt-link>
                   <div
