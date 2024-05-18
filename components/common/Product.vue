@@ -11,6 +11,14 @@ const props = defineProps({
       return "";
     },
   },
+
+  huongdando: {
+    type: String,
+    default() {
+      return "";
+    },
+  },
+
   search: {
     type: String,
     default: "",

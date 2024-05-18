@@ -11,6 +11,7 @@ const { $apiUrl } = useNuxtApp();
 const route = useRoute();
 const router = useRouter();
 const selectedSize = "";
+const selectedColor = "";
 const id = route.params ? route.params.id : null;
 
 const modules = ref([Autoplay, Navigation]);
@@ -89,6 +90,8 @@ const handleAddProductToCart = () => {
     body: {
       product: id,
       quantity: num.value,
+      colors: selectedColor,
+      size: selectedSize,
     },
   })
     .then((res) => {

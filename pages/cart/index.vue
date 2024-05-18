@@ -29,6 +29,8 @@ const getCart = () => {
           stt: index + 1,
           id: item.id,
           idProduct: item.product.id,
+          colors: item.colors,
+          size: item.size,
           quantityCart: item.quantity,
           priceCart: item.product.price * item.quantity,
         };
@@ -102,7 +104,7 @@ getCart();
           <div class="w-11/12 mt-4">
             <el-table
               :data="tableData"
-              height="680"
+              height="700"
               style="width: 100%"
               :header-cell-class-name="headerRowStyle"
               show-summary
@@ -129,12 +131,12 @@ getCart();
                 class="text-center"
               ></el-table-column>
               <el-table-column
-                prop=""
+                prop="colors"
                 label="Màu sắc"
                 class="text-center"
               ></el-table-column>
               <el-table-column
-                prop=""
+                prop="size"
                 label="Kích thước"
                 class="text-center"
               ></el-table-column>
@@ -173,14 +175,9 @@ getCart();
             </el-table>
             <div class="w-full flex justify-center mt-4 mb-12">
               <el-button
+                color="#61C2C9"
                 type="success"
-                class="uppercase"
-                style="
-                  width: 240px;
-                  height: 40px;
-                  font-size: larger;
-                  background-color: lightseagreen;
-                "
+                class="uppercase w-[240px] h-[40px] text-[18px]"
                 @click="openModal"
               >
                 Thanh Toán
