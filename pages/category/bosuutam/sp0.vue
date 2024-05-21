@@ -88,7 +88,7 @@ getProducts();
   <div>
     <div
       v-loading="loading"
-      class="w-4/5 flex flex-col items-center justify-center mx-auto"
+      class="w-4/5 flex flex-col items-center justify-center mx-auto mb-10"
     >
       <img
         :src="advertising && advertising.img1 ? advertising.img1 : ''"
@@ -99,7 +99,7 @@ getProducts();
         Tất cả
       </div>
       <div class="w-1/2 h-1 bg-teal-700 mb-5"></div>
-      <div class="w-3/4 grid grid-cols-4 gap-4">
+      <div class="w-3/4 grid grid-cols-4 gap-4 mb-5">
         <div
           v-for="(product, index) in products"
           :key="index"
@@ -126,7 +126,7 @@ getProducts();
               }}
             </span>
             <div
-              class="py-2 hover text-center font-bold text-blue-600 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-black transition duration-200"
+              class="py-2 hover text-center font-bold text-cyan-700 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-black transition duration-200"
             >
               <el-icon size="20"> <ShoppingCart /> </el-icon>
               Thêm vào giỏ

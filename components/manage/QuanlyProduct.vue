@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import spaFetch from "~/plugins/fetch.js";
-import CreateOrUpdateProduct from "~/components/manage/CreateOrUpdateProduct.vue";
 import { Search } from "@element-plus/icons-vue";
+import CU_Product from "./CU_Product.vue";
 
 const { $apiUrl } = useNuxtApp();
 
@@ -134,7 +134,7 @@ watch(search, () => {
     <span class="text-right mt-4 text-lg">
       Thống kế số lượng sản phẩm: {{ tableData.length }}
     </span>
-    <CreateOrUpdateProduct
+    <CU_Product
       ref="refCreateOrUpdateModal"
       :is-update="isUpdate"
       @on-success="handleSuccess"

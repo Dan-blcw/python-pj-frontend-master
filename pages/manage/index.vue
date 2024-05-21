@@ -34,7 +34,7 @@ const handleChange = (key) => {
     <el-menu
       active-text-color="#9A5C00"
       background-color="#E4E7E6"
-      default-active=""
+      default-active="2"
       text-color="#000"
       class="menu"
       @select="handleChange"

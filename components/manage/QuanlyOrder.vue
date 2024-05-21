@@ -1,92 +1,99 @@
 <script setup>
-import {ref} from 'vue'
+import { ref } from "vue";
 import spaFetch from "~/plugins/fetch.js";
-import { Search } from "@element-plus/icons-vue"
-import ModalDetailCart from "~/components/manage/ModalDetailCart.vue";
+import { Search } from "@element-plus/icons-vue";
+import ChitietOrder from "./ChitietOrder.vue";
 
-const {$apiUrl} = useNuxtApp()
+const { $apiUrl } = useNuxtApp();
 
-const tableData = ref([])
-const loading = ref(false)
-const refModalDetailCart = ref()
-const search = ref("")
+const tableData = ref([]);
+const loading = ref(false);
+const refModalDetailCart = ref();
+const search = ref("");
 
 const getOrder = () => {
-    loading.value = true
-    spaFetch()($apiUrl.ORDER, {
-        method: 'GET',
-        params:{
-            ordering: '-created_at',
-            search: search.value,
-            query_all: true,
-        }
-    }).then(res => {
-        tableData.value = res.map((item, index) =>{
-            return {
-                stt: index + 1,
-                ...item,
-            }
-        })
-        loading.value = false
-    }).catch( error => {
-        loading.value = false
-        console.log("error", error.response)
+  loading.value = true;
+  spaFetch()($apiUrl.ORDER, {
+    method: "GET",
+    params: {
+      ordering: "-created_at",
+      search: search.value,
+      query_all: true,
+    },
+  })
+    .then((res) => {
+      tableData.value = res.map((item, index) => {
+        return {
+          stt: index + 1,
+          ...item,
+        };
+      });
+      loading.value = false;
     })
-}
+    .catch((error) => {
+      loading.value = false;
+      console.log("error", error.response);
+    });
+};
 
 const openModal = (item) => {
-    refModalDetailCart.value.openModal()
-    refModalDetailCart.value.setTableData(item)
-}
+  refModalDetailCart.value.openModal();
+  refModalDetailCart.value.setTableData(item);
+};
 
-getOrder()
+getOrder();
 
 watch(search, () => {
-    setTimeout(() => {
-        getOrder()
-    }, 200)
-})
+  setTimeout(() => {
+    getOrder();
+  }, 200);
+});
 </script>
 
 <template>
-    <div class="h-full flex flex-col gap-x-2 p-4">
-        <div class="uppercase font-semibold text-2xl">
-            Danh sách sản phẩm
-        </div>
-        <div class="search-container">
-            <el-input
-            v-model="search"
-            placeholder="Tìm kiếm sản phẩm"
-            :prefix-icon="Search"
-            class="search-input custom-input"
-            />
-        </div>
-        <el-table v-loading="loading" border :data="tableData"
-                  height="500"
-                  style="width: 100%">
-            <el-table-column prop="stt" label="STT" width="80"></el-table-column>
-            <el-table-column prop="name" label="Họ và tên" width="240"/>
-            <el-table-column prop="phone" label="Số điện thoại đặt hàng" width="240"/>
-            <el-table-column prop="address" label="Địa chỉ giao hàng" width="240"/>
-            <el-table-column prop="total_amount" label="Tổng giá trị đơn hàng" width="240"/>
-            <el-table-column label="Phương thức thanh toán" width="240">
-                Thanh toán khi nhận hàng
-            </el-table-column>
-            <el-table-column fixed="right" label="Hành động" width="240">
-                <template #default="scope">
-                    <el-button type="primary"
-                               size="small"
-                               @click="openModal(scope.row)">
-                        Chi tiết đơn hàng
-                    </el-button>
-                </template>
-            </el-table-column>
-        </el-table>
-        <span class="text-right mt-4 text-lg">
-            Tổng số đơn hàng: {{tableData.length}}
-        </span>
-        <ModalDetailCart ref="refModalDetailCart"/>
+  <div class="h-full flex flex-col gap-x-2 p-4">
+    <div class="uppercase font-semibold text-2xl">Danh sách sản phẩm</div>
+    <div class="search-container">
+      <el-input
+        v-model="search"
+        placeholder="Tìm kiếm sản phẩm"
+        :prefix-icon="Search"
+        class="search-input custom-input"
+      />
     </div>
+    <el-table
+      v-loading="loading"
+      border
+      :data="tableData"
+      height="500"
+      style="width: 100%"
+    >
+      <el-table-column prop="stt" label="STT" width="80"></el-table-column>
+      <el-table-column prop="sku" label="Mã hóa đơn" width="150" />
+      <el-table-column prop="name" label="Họ và tên" width="150" />
+      <el-table-column prop="phone" label="Số điện thoại" width="150" />
+      <el-table-column prop="address" label="Địa chỉ giao hàng" width="360" />
+      <el-table-column
+        prop="total_amount"
+        label="Tổng giá trị đơn hàng"
+        width="200"
+      />
+      <el-table-column label="Phương thức thanh toán" width="240">
+        Thanh toán khi nhận hàng
+      </el-table-column>
+      <el-table-column fixed="right" label="Hành động" width="240">
+        <template #default="scope">
+          <el-button type="primary" size="small" @click="openModal(scope.row)">
+            Chi tiết đơn hàng
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <span class="text-right mt-4 text-lg">
+      Tổng số đơn hàng: {{ tableData.length }}
+    </span>
+    <ChitietOrder ref="refModalDetailCart" />
+  </div>
 </template>
 
 <style scoped>

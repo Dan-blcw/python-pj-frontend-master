@@ -235,7 +235,7 @@ watch(search, () => {
           <div class="flex items-start gap-16">
             <el-badge
               :value="auth.$state.quantityInCart"
-              class="cursor-pointer hover:text-blue-600 transition duration-200"
+              class="cursor-pointer hover:text-cyan-700 transition duration-200"
               @click="$router.push('/cart')"
             >
               <el-icon size="28"><ShoppingCart /></el-icon>
@@ -244,16 +244,13 @@ watch(search, () => {
               class="text-base"
               v-if="!auth.$state.accessToken || !auth.$state.refreshToken"
             >
-              <nuxt-link
-                to="/login"
-                class="cursor-pointer hover:underline hover:text-[#409eff]"
-              >
+              <nuxt-link to="/login" class="cursor-pointer hover:text-cyan-700">
                 Đăng nhập
               </nuxt-link>
               <el-divider direction="vertical" />
               <nuxt-link
                 to="/register"
-                class="cursor-pointer hover:underline hover:text-[#409eff]"
+                class="cursor-pointer hover:text-cyan-700"
               >
                 Đăng ký
               </nuxt-link>
@@ -273,20 +270,20 @@ watch(search, () => {
                   </span>
                   <nuxt-link to="/account">
                     <div
-                      class="cursor-pointer py-2 px-4 text-base hover:underline hover:text-[#409eff]"
+                      class="cursor-pointer py-2 px-4 text-base hover:text-cyan-700"
                     >
                       Quản lý tài khoản
                     </div>
                   </nuxt-link>
-                  <nuxt-link to="/myorder">
+                  <nuxt-link to="/order">
                     <div
-                      class="cursor-pointer py-2 px-4 text-base hover:underline hover:text-[#409eff]"
+                      class="cursor-pointer py-2 px-4 text-base hover:text-cyan-700"
                     >
                       Quản lý đơn hàng
                     </div>
                   </nuxt-link>
                   <div
-                    class="cursor-pointer py-2 px-4 text-base hover:underline hover:text-[#409eff]"
+                    class="cursor-pointer py-2 px-4 text-base hover:text-cyan-700"
                     @click="logOut"
                   >
                     Đăng xuất
@@ -368,14 +365,14 @@ watch(search, () => {
               <li>
                 <a
                   class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
-                  href="/"
+                  href="/about"
                   >Chính sách đổi trả</a
                 >
               </li>
               <li>
                 <a
                   class="block transition-all text-[#555] hover:text-[#555] px-4 py-1"
-                  href="/category/t1/"
+                  href="/about"
                   >Chương trình ưu đãi sinh nhật khách hàng</a
                 >
               </li>

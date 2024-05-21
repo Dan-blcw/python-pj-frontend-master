@@ -10,8 +10,8 @@ import { useAuthStore } from "~/stores/auth.js";
 const { $apiUrl } = useNuxtApp();
 const route = useRoute();
 const router = useRouter();
-const selectedSize = "";
-const selectedColor = "";
+var selectedColor = "Brown";
+var selectedSize = "S";
 const id = route.params ? route.params.id : null;
 
 const modules = ref([Autoplay, Navigation]);
@@ -152,7 +152,7 @@ getProducts();
 </script>
 
 <template>
-  <div class="flex flex-col max-w-[1200px] mx-auto">
+  <div class="flex flex-col max-w-[1050px] mx-auto">
     <div class="w-full flex flex-col items-center justify-center mx-auto">
       <div v-loading="loading" class="w-full flex mt-4 justify-center gap-10">
         <div class="flex w-1/2 basis-1/2">
@@ -243,44 +243,44 @@ getProducts();
                   type="radio"
                   v-model="selectedColor"
                   name="colorProduct"
-                  value="nâu"
+                  value="Brown"
                 />
                 <span class="w-6 h-6 rounded-full bg-brown inline-block"></span>
-                Nâu
+                Brown
               </label>
               <label class="flex items-center gap-x-1 cursor-pointer">
                 <input
                   type="radio"
                   v-model="selectedColor"
                   name="colorProduct"
-                  value="đen"
+                  value="Black"
                 />
                 <span class="w-6 h-6 rounded-full bg-black inline-block"></span>
-                Đen
+                Black
               </label>
               <label class="flex items-center gap-x-1 cursor-pointer">
                 <input
                   type="radio"
                   v-model="selectedColor"
                   name="colorProduct"
-                  value="trắng xám"
+                  value="Gray"
                 />
                 <span
                   class="w-6 h-6 rounded-full bg-gray-300 inline-block"
                 ></span>
-                Trắng Xám
+                Gray
               </label>
               <label class="flex items-center gap-x-1 cursor-pointer">
                 <input
                   type="radio"
                   v-model="selectedColor"
                   name="colorProduct"
-                  value="Xanh"
+                  value="Blue"
                 />
                 <span
                   class="w-6 h-6 rounded-full bg-sky-700 inline-block"
                 ></span>
-                Xanh
+                Blue
               </label>
             </div>
           </div>
@@ -359,7 +359,7 @@ getProducts();
         </div>
       </div>
 
-      <div class="w-full translate-x-[5%]">
+      <div class="w-full translate-x-[0%]">
         <div>
           <div class="flex-container flex items-start">
             <div class="table-container flex-1">
@@ -414,7 +414,7 @@ getProducts();
                 có thể bị thay đổi 1-2 CM.
               </p>
               <div
-                class="text-black text-lg text-[1.05rem] font-semibold relative mt-0 mb-1"
+                class="text-black text-lg text-[1.05rem] font-semibold relative mt-0 mb-1 ms-5"
               >
                 Cách đo kích thước sản phẩm ?
               </div>
@@ -443,8 +443,83 @@ getProducts();
         </div>
       </div>
 
+      <!--Huong dan do trang suc-->
+      <div class="w-full translate-x-[%]">
+        <div>
+          <div class="flex-container flex items-start">
+            <div class="flex w-5/12 relative">
+              <img
+                class="image"
+                src="https://www.pnj.com.vn/blog/wp-content/uploads/2021/11/huong-dan-do-size-nhan-3-1024x768.jpg"
+              />
+            </div>
+            <div class="table-container flex-1 ms-5">
+              <div
+                class="text-black text-lg text-[1.05rem] font-semibold reative"
+              >
+                Hướng dẫn cách đo kích thước trang sức:
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Loại Trang Sức</th>
+                    <th>Kích Thước</th>
+                    <th>Ghi Chú</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Vòng Cổ</td>
+                    <td>35-50 cm</td>
+                    <td>
+                      Chiều dài từ S(35-30) M(40-45) L(50-52) XL(52-53) tùy loại
+                      vòng
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nhẫn</td>
+                    <td>Size 5-10</td>
+                    <td>Đo theo size ngón tay S(5-6) M(7) L(8) XL(9-10)</td>
+                  </tr>
+                  <tr>
+                    <td>Vòng Tay</td>
+                    <td>15-22 cm</td>
+                    <td>
+                      Chiều dài từ S(15-16) M(17-19) L(19-20) XL(20-22) tùy loại
+                      vòng
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                *Dữ liệu này có được bằng cách đo thủ công trang sức, các phép
+                đo có thể bị thay đổi 0.2 - 0.5 CM. Hãy liên hệ với Shop để nhận
+                được tư vấn
+              </p>
+              <div
+                class="text-black text-lg text-[1.05rem] font-semibold relative mt-0 mb-1"
+              >
+                Cách đo kích thước trang sức?
+              </div>
+              <p class="mb-1">
+                1. Vòng Cổ_________Dùng thước dây đo chiều dài từ khóa đến hết
+                vòng.
+              </p>
+              <p class="mb-1">
+                2. Nhẫn____________Dùng thước dây hoặc sợi chỉ đo chu vi ngón
+                tay.
+              </p>
+              <p class="mb-1">
+                3. Vòng Tay_______Dùng thước dây đo chiều dài từ đầu này đến đầu
+                kia của vòng.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  -->
       <!-- Start Danh gia -->
-      <div class="w-11/12 mt-0 translate-x-[-0%]">
+      <div class="w-11/12 mt-4 translate-x-[-0%]">
         <el-tabs
           v-model="activeName"
           type="border-card"

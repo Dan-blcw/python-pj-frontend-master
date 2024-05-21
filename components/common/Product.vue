@@ -166,7 +166,7 @@ watch(
               }}
             </span>
             <div
-              class="py-2 hover text-center font-bold text-blue-600 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-black transition duration-200"
+              class="py-2 hover text-center font-bold text-cyan-700 uppercase flex justify-center items-center gap-1 hover:text-white hover:bg-black transition duration-200"
             >
               <el-icon size="20"> <ShoppingCart /> </el-icon>
               Thêm vào giỏ
