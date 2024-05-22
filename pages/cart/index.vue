@@ -3,42 +3,175 @@ import { ref } from "vue";
 import spaFetch from "~/plugins/fetch.js";
 import { useAuthStore } from "~/stores/auth.js";
 import ModalPayment from "~/components/common/ModalPayment.vue";
+import CartItem from "~/components/common/CartItem.vue";
+
+// const { $apiUrl } = useNuxtApp();
+
+// const auth = useAuthStore();
+
+// const tableData = ref([]);
+// const refModalPayment = ref();
+
+// const headerRowStyle = () => {
+//   return "header-cell-dio-style";
+// };
+// const getCart = () => {
+//   const id =
+//     auth.$state.user && auth.$state.user.cart ? auth.$state.user.cart : null;
+//   spaFetch()(`${$apiUrl.CART}${id}/`, {
+//     method: "GET",
+//   })
+//     .then((res) => {
+//       auth.setQuantityInCart(res.products.length);
+//       tableData.value = res.products.map((item, index) => {
+//         return {
+//           ...item.product,
+//           stt: index + 1,
+//           id: item.id,
+//           idProduct: item.product.id,
+//           colors: item.colors,
+//           size: item.size,
+//           quantityCart: item.quantity,
+//           priceCart: item.product.price * item.quantity,
+//         };
+//       });
+//       // console.table(tableData.value)
+//     })
+//     .catch((error) => {
+//       console.log("error", error.response);
+//     });
+// };
+// const handleChange = (value, item, oldValue) => {
+//   if (!value) {
+//     return (item.quantityCart = oldValue);
+//   }
+//   spaFetch()(`${$apiUrl.CART_ITEM}${item.id}/`, {
+//     method: "PATCH",
+//     body: {
+//       quantity: value,
+//       colors: item.colors,
+//       size: item.size,
+//     },
+//   })
+//     .then((res) => {
+//       item.priceCart = value * item.price;
+//     })
+//     .catch((error) => {
+//       item.quantityCart = oldValue;
+//       console.log("error", error.response);
+//       if (error.status === 400) {
+//         ElMessage.error({
+//           message: "Số lượng hàng trong kho không đủ",
+//         });
+//       } else {
+//         ElMessage.error("Thêm vào giỏ hàng thất bại");
+//       }
+//     });
+// };
+
+// const deleteItemCart = (item) => {
+//   spaFetch()(`${$apiUrl.CART_ITEM}${item.id}/`, {
+//     method: "DELETE",
+//   })
+//     .then((res) => {
+//       tableData.value = tableData.value.filter((i) => i.id !== item.id);
+//       auth.setQuantityInCart(auth.$state.quantityInCart - 1);
+//       ElMessage.success("Xoá sản phấm thảnh công");
+//     })
+//     .catch((error) => {
+//       console.log("error", error.response);
+//       ElMessage.error("Xoá sản phấm thất bại");
+//     });
+// };
+
+// const openModal = () => {
+//   refModalPayment.value.openModal();
+// };
+
+// getCart();
 
 const { $apiUrl } = useNuxtApp();
 
 const auth = useAuthStore();
 
-const tableData = ref([]);
+const cartList = ref([
+  {
+    id: 1,
+    idProduct: "SP001",
+    colors: "Green",
+    size: "XL",
+    quantityCart: 2,
+    priceCart: 1000000,
+    productName: "Waffle Knit Beanie",
+    productThumb:
+      "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc04412-1624.jpg",
+  },
+  {
+    id: 2,
+    idProduct: "SP002",
+    colors: "Red",
+    size: "XL",
+    quantityCart: 2,
+    priceCart: 1000000,
+    productName: "Waffle Knit Beanie",
+
+    productThumb:
+      "https://shop-rose-beta.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F17.fcfa959c.png&w=750&q=75",
+  },
+  {
+    id: 3,
+    idProduct: "SP003",
+    colors: "Green",
+    size: "XL",
+    quantityCart: 2,
+    priceCart: 1000000,
+    productName: "LOGO CAMO PUFFER JACKET V2 LOGO CAMO PUFFER JACKET V2",
+
+    productThumb:
+      "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc04412-1624.jpg",
+  },
+  {
+    id: 4,
+    idProduct: "SP004",
+    colors: "Green",
+    size: "XL",
+    quantityCart: 1,
+    priceCart: 500000,
+    productName: "LOGO CAMO PUFFER JACKET V2",
+    productThumb:
+      "https://shop-rose-beta.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F5.addcba21.png&w=750&q=75",
+  },
+]);
 const refModalPayment = ref();
 
 const headerRowStyle = () => {
   return "header-cell-dio-style";
 };
 const getCart = () => {
-  const id =
-    auth.$state.user && auth.$state.user.cart ? auth.$state.user.cart : null;
-  spaFetch()(`${$apiUrl.CART}${id}/`, {
-    method: "GET",
-  })
-    .then((res) => {
-      auth.setQuantityInCart(res.products.length);
-      tableData.value = res.products.map((item, index) => {
-        return {
-          ...item.product,
-          stt: index + 1,
-          id: item.id,
-          idProduct: item.product.id,
-          colors: item.colors,
-          size: item.size,
-          quantityCart: item.quantity,
-          priceCart: item.product.price * item.quantity,
-        };
-      });
-      // console.table(tableData.value)
-    })
-    .catch((error) => {
-      console.log("error", error.response);
-    });
+  // const id =
+  //   auth.$state.user && auth.$state.user.cart ? auth.$state.user.cart : null;
+  // spaFetch()(`${$apiUrl.CART}${id}/`, {
+  //   method: "GET",
+  // })
+  //   .then((res) => {
+  //     auth.setQuantityInCart(res.products.length);
+  //     cartList.value = res.products.map((item, index) => {
+  //       return {
+  //         ...item.product,
+  //         stt: index + 1,
+  //         id: item.id,
+  //         idProduct: item.product.id,
+  //         colors: item.colors,
+  //         size: item.size,
+  //         quantityCart: item.quantity,
+  //         priceCart: item.product.price * item.quantity,
+  //       };
+  //     });
+  //     // console.table(tableData.value)
+  //   })
+  //   .catch((error) => {
+  //     console.log("error", error.response);
+  //   });
 };
 const handleChange = (value, item, oldValue) => {
   if (!value) {
@@ -82,9 +215,10 @@ const deleteItemCart = (item) => {
       ElMessage.error("Xoá sản phấm thất bại");
     });
 };
-
 const openModal = () => {
-  refModalPayment.value.openModal();
+  if (refModalPayment.value) {
+    refModalPayment.value.openModal();
+  }
 };
 
 getCart();
@@ -93,62 +227,190 @@ getCart();
 <template>
   <div class="max-w-[1300px] mx-auto py-12">
     <h1
-      class="text-[36px] font-semibold leading-tight pb-10 border-b-2 border-l-neutral-300 border-solid"
+      class="text-[36px] font-semibold leading-tight pb-10 border-b-[1px] border-l-neutral-300 border-solid"
     >
       Giỏ hàng
     </h1>
-    <div class="w-full h-[1000px]">
-      <div
-        class="w-[60%] bg-white border-b-2 border-solid border-gray-300 mt-5"
-      >
-        <div class="w-ful p-5 h-48">
-          <div class="flex-1 flex flex-row gap-5 w-full">
-            <img
-              class="w-32 h-36 rounded-lg border-2 border-solid border-gray-500"
-              src="https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc04412-1624.jpg"
-              alt="product thumb"
+    <div class="w-full flex flex-row justify-between">
+      <div class="w-3/5 bg-white mt-5">
+        <!-- StarT: Cart Item List -->
+        <div class="w-full pr-10 h-auto">
+          <!-- Cart Item -->
+          <CartItem
+            v-for="item in cartList"
+            :key="item.id"
+            :item="item"
+            :on-quantity-change="handleChange"
+            :on-remove-item="deleteItemCart"
+          />
+          <!-- Cart Item -->
+        </div>
+        <!-- End: Cart Item List -->
+      </div>
+      <div class="w-[1px] bg-gray-300 mt-5"></div>
+      <div class="w-[400px] mt-5">
+        <div class="w-full pl-10">
+          <h2 class="text-2xl font-semibold mb-5">Tổng hóa đơn</h2>
+          <ul>
+            <li
+              class="flex justify-between py-4 border-b-[1px] border-solid border-gray-300"
+            >
+              <h3>Chi phí đơn hàng</h3>
+              <span class="text-lg font-semibold text-[#2c2c2c]"
+                >1.000.000VNĐ</span
+              >
+            </li>
+            <li
+              class="flex justify-between py-4 border-b-[1px] border-solid border-gray-300"
+            >
+              <h3>Tiền vận chuyển</h3>
+              <span class="text-lg font-semibold text-[#2c2c2c]"
+                >30.000VNĐ</span
+              >
+            </li>
+            <li
+              class="flex justify-between py-4 border-b-[1px] border-solid border-gray-300"
+            >
+              <h3>Tiền thuế</h3>
+              <span class="text-lg font-semibold text-[#2c2c2c]"
+                >50.000VNĐ</span
+              >
+            </li>
+            <li
+              class="flex justify-between py-4 text-xl font-semibold text-[#2c2c2c]"
+            >
+              <h3>Tổng chi phí</h3>
+              <span>1.080.000VNĐ</span>
+            </li>
+          </ul>
+          <button
+            class="w-full h-12 mt-5 font-medium bg-[#2c2c2c] text-white border-2 border-solid border-[#2c2c2c] text-lg rounded-full hover:text-[#2c2c2c] hover:bg-white transition-colors"
+            @click="openModal"
+          >
+            Thanh toán
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- <ModalPayment ref="refModalPayment" :order-details="cartList" /> -->
+
+    <div class="w-[600px] bg-slate-200 py-2 px-4 rounded-lg">
+      <h2 class="text-xl p-2 text-center font-bold text-[#2c2c2c] mb-5">
+        Thông tin thanh toán
+      </h2>
+      <div class="flex flex-row flex-wrap justify-between items-center">
+        <div class="basis-1/2 max-w-1/2 p-2">
+          <label class="text-[#2c2c2c] text-base font-medium" for="name"
+            >Họ và tên</label
+          >
+          <div>
+            <input
+              class="mt-1 px-4 py-2 rounded-lg border-2 border-solid border-gray-200 w-full outline-blue-500 transition-all"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Họ và tên..."
             />
-            <div class="flex-1 flex flex-col justify-between">
-              <div class="flex flex-row flex-wrap justify-between">
-                <div class="flex-1 flex flex-row flex-wrap justify-between">
-                  <div>
-                    <h3 class="text-base font-bold text-[#2c2c2c]">
-                      LOGO CAMO PUFFER JACKET V2
-                    </h3>
-                    <div class="flex gap-5">
-                      <span
-                        class="pr-5 border-r-[1px] border-solid border-gray-200"
-                        >Size: XL</span
-                      >
-                      <span>Color: Green</span>
-                    </div>
-                  </div>
-                  <div
-                    class="text-xl flex flex-row items-center h-10 border-2 border-solid border-gray-400"
-                  >
-                    <button class="w-10 h-8">-</button>
-                    <span
-                      class="w-10 h-full flex items-center justify-center border-x-2 border-solid border-gray-400"
-                      >1</span
-                    >
-                    <button class="w-10 h-8">+</button>
-                  </div>
-                  <div><span class="text-xl">1.000.000VNĐ</span></div>
-                </div>
-              </div>
-              <div class="flex justify-between items-center text-[#2c2c2c]">
-                <span
-                  class="text-sm px-4 py-1 border-[1px] border-solid border-gray-300 rounded-[99px]"
-                  >Còn hàng</span
-                >
-                <span
-                  class="text-lg px-4 py-1 border-[1px] border-solid border-gray-300 rounded-[99px] cursor-pointer"
-                  >Xóa khỏi giỏ hàng</span
-                >
-              </div>
-            </div>
           </div>
         </div>
+        <div class="basis-1/2 max-w-1/2 p-2">
+          <label class="text-[#2c2c2c] text-base font-medium" for="email"
+            >Email</label
+          >
+          <div>
+            <input
+              class="mt-1 px-4 py-2 rounded-lg border-2 border-solid border-gray-200 w-full outline-blue-500 transition-all"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email..."
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-row flex-wrap justify-between items-center">
+        <div class="basis-1/2 max-w-1/2 p-2">
+          <label class="text-[#2c2c2c] text-base font-medium" for="phoneNumber"
+            >Số điện thoại</label
+          >
+          <div>
+            <input
+              class="mt-1 px-4 py-2 rounded-lg border-2 border-solid border-gray-200 w-full outline-blue-500 transition-all"
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="Số điện thoại..."
+            />
+          </div>
+        </div>
+        <div class="basis-1/2 max-w-1/2 p-2">
+          <label class="text-[#2c2c2c] text-base font-medium" for="address"
+            >Địa chỉ</label
+          >
+          <div>
+            <input
+              class="mt-1 px-4 py-2 rounded-lg border-2 border-solid border-gray-200 w-full outline-blue-500 transition-all"
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Địa chỉ..."
+            />
+          </div>
+        </div>
+      </div>
+      <div class="mb-4 p-2">
+        <h3 class="text-[#2c2c2c] text-base font-medium">
+          Phương thức thanh toán
+        </h3>
+        <div class="mt-1 flex items-center gap-2">
+          <input
+            type="radio"
+            id="paymentMethod_direct"
+            name="paymentMethod"
+            checked
+            value="0"
+          />
+          <label class="cursor-pointer" for="paymentMethod_direct"
+            >Thanh toán khi nhận hàng</label
+          >
+        </div>
+        <div class="mt-1 flex items-center gap-2">
+          <input
+            type="radio"
+            id="paymentMethod_banking"
+            name="paymentMethod"
+            value="1"
+            disabled
+          />
+          <label class="cursor-pointer" for="paymentMethod_banking"
+            >Chuyển khoản ngân hàng</label
+          >
+        </div>
+        <div class="my-4">
+          <label class="text-[#2c2c2c] text-base font-medium" for="message"
+            >Tin nhắn
+          </label>
+          <div>
+            <textarea
+              name="message"
+              id="message"
+              placeholder="Mô tả..."
+              rows="5"
+              class="w-full mt-1 px-4 py-2 rounded-lg border-2 border-solid border-gray-200 outline-blue-500 transition-all"
+            ></textarea>
+          </div>
+        </div>
+        <p
+          class="mb-4 flex text-[#2c2c2c] text-base font-medium items-center gap-2"
+        >
+          Tổng hóa đơn: <span class="text-lg">500.000.000VNĐ</span>
+        </p>
+        <button
+          class="w-full rounded-full bg-slate-500 text-white h-10 text-xl border-2 border-solid border-slate-500 hover:text-slate-500 hover:bg-white transition-all"
+        >
+          Xác nhận
+        </button>
       </div>
     </div>
   </div>
@@ -265,5 +527,12 @@ getCart();
 }
 .text-center {
   text-align: center;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 </style>
