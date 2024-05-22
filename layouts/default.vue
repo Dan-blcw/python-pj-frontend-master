@@ -236,7 +236,7 @@ watch(search, () => {
               />
             </div>
           </nav>
-          <div class="flex items-start gap-16">
+          <div class="flex items-center gap-16">
             <el-badge
               :value="auth.$state.quantityInCart"
               class="cursor-pointer hover:text-cyan-700 transition duration-200"
@@ -245,19 +245,20 @@ watch(search, () => {
               <el-icon size="28"><ShoppingCart /></el-icon>
             </el-badge>
             <div
-              class="text-base"
+              class="text-base h-full flex flex-row items-center"
               v-if="!auth.$state.accessToken || !auth.$state.refreshToken"
             >
-              <nuxt-link to="/login" class="cursor-pointer hover:text-cyan-700">
-                Đăng nhập
-              </nuxt-link>
-              <el-divider direction="vertical" />
-              <nuxt-link
-                to="/register"
-                class="cursor-pointer hover:text-cyan-700"
+              <a
+                href="/login"
+                class="flex items-center cursor-pointer hover:text-cyan-700"
+                >Đăng nhập</a
               >
-                Đăng ký
-              </nuxt-link>
+              <el-divider direction="vertical" />
+              <a
+                href="/register"
+                class="flex items-center cursor-pointer hover:text-cyan-700"
+                >Đăng ký</a
+              >
             </div>
             <div v-else>
               <div
