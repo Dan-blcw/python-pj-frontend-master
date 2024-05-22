@@ -3,14 +3,21 @@ import { ref } from "vue";
 import spaFetch from "~/plugins/fetch.js";
 import { Search } from "@element-plus/icons-vue";
 import ChitietOrder from "./ChitietOrder.vue";
-
+import Update_status from "./Update_status.vue";
 const { $apiUrl } = useNuxtApp();
 
 const tableData = ref([]);
 const loading = ref(false);
 const refModalDetailCart = ref();
 const search = ref("");
+const isUpdate = ref(false);
+const refUpdateModal = ref();
 
+const handleEdit = (item) => {
+  isUpdate.value = true;
+  refUpdateModal.value.openModal();
+  refUpdateModal.value.setFormState(item);
+};
 const getOrder = () => {
   loading.value = true;
   spaFetch()($apiUrl.ORDER, {
@@ -41,8 +48,11 @@ const openModal = (item) => {
   refModalDetailCart.value.setTableData(item);
 };
 
+const handleSuccess = () => {
+  search.value = "";
+  getOrder();
+};
 getOrder();
-
 watch(search, () => {
   setTimeout(() => {
     getOrder();
@@ -51,12 +61,12 @@ watch(search, () => {
 </script>
 
 <template>
-  <div class="h-full flex flex-col gap-x-2 p-4">
-    <div class="uppercase font-semibold text-2xl">Danh sách sản phẩm</div>
+  <div class="h-full flex flex-col gap-x-2 p-2">
+    <div class="uppercase font-semibold text-2xl">Danh sách Đơn Hàng</div>
     <div class="search-container">
       <el-input
         v-model="search"
-        placeholder="Tìm kiếm sản phẩm"
+        placeholder="Tìm kiếm Đơn Hàng"
         :prefix-icon="Search"
         class="search-input custom-input"
       />
@@ -70,9 +80,10 @@ watch(search, () => {
     >
       <el-table-column prop="stt" label="STT" width="80"></el-table-column>
       <el-table-column prop="sku" label="Mã hóa đơn" width="150" />
-      <el-table-column prop="name" label="Họ và tên" width="150" />
+      <el-table-column prop="name" label="khách hàng" width="120" />
       <el-table-column prop="phone" label="Số điện thoại" width="150" />
-      <el-table-column prop="address" label="Địa chỉ giao hàng" width="360" />
+      <el-table-column prop="address" label="Địa chỉ giao hàng" width="340" />
+      <el-table-column prop="status" label="Trạng Thái" width="140" />
       <el-table-column
         prop="total_amount"
         label="Tổng giá trị đơn hàng"
@@ -81,10 +92,18 @@ watch(search, () => {
       <el-table-column label="Phương thức thanh toán" width="240">
         Thanh toán khi nhận hàng
       </el-table-column>
-      <el-table-column fixed="right" label="Hành động" width="240">
+      <el-table-column fixed="right" label="Hành động" width="180">
         <template #default="scope">
           <el-button type="primary" size="small" @click="openModal(scope.row)">
-            Chi tiết đơn hàng
+            Chi tiết
+          </el-button>
+          <el-button
+            link
+            type="primary"
+            size="small"
+            @click.prevent="handleEdit(scope.row)"
+          >
+            Thay đổi
           </el-button>
         </template>
       </el-table-column>
@@ -93,6 +112,7 @@ watch(search, () => {
       Tổng số đơn hàng: {{ tableData.length }}
     </span>
     <ChitietOrder ref="refModalDetailCart" />
+    <Update_status ref="refUpdateModal" @on-success="handleSuccess" />
   </div>
 </template>
 
@@ -100,7 +120,7 @@ watch(search, () => {
 .search-container {
   display: flex;
   align-items: center;
-  gap: 10px; /* Adjust the gap between the input and the button */
-  padding: 10px 0; /* Adjust the padding as needed */
+  gap: 8px; /* Adjust the gap between the input and the button */
+  padding: 8px 0; /* Adjust the padding as needed */
 }
 </style>

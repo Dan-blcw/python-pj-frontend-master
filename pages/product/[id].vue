@@ -21,6 +21,10 @@ const loading = ref(false);
 const loadingAdd = ref(false);
 const auth = useAuthStore();
 
+const handleClick = (item) => {
+  router.push(item && item.id ? `/product/${item.id}` : "#");
+};
+
 const num = ref(1);
 const textarea2 = ref("");
 const activeName = ref("first");

@@ -96,6 +96,7 @@ const submit = async () => {
         });
     }
   });
+  window.location.reload();
 };
 
 const deleteCart = () => {

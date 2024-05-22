@@ -91,7 +91,69 @@ getCart();
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="max-w-[1300px] mx-auto py-12">
+    <h1
+      class="text-[36px] font-semibold leading-tight pb-10 border-b-2 border-l-neutral-300 border-solid"
+    >
+      Giỏ hàng
+    </h1>
+    <div class="w-full h-[1000px]">
+      <div
+        class="w-[60%] bg-white border-b-2 border-solid border-gray-300 mt-5"
+      >
+        <div class="w-ful p-5 h-48">
+          <div class="flex-1 flex flex-row gap-5 w-full">
+            <img
+              class="w-32 h-36 rounded-lg border-2 border-solid border-gray-500"
+              src="https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc04412-1624.jpg"
+              alt="product thumb"
+            />
+            <div class="flex-1 flex flex-col justify-between">
+              <div class="flex flex-row flex-wrap justify-between">
+                <div class="flex-1 flex flex-row flex-wrap justify-between">
+                  <div>
+                    <h3 class="text-base font-bold text-[#2c2c2c]">
+                      LOGO CAMO PUFFER JACKET V2
+                    </h3>
+                    <div class="flex gap-5">
+                      <span
+                        class="pr-5 border-r-[1px] border-solid border-gray-200"
+                        >Size: XL</span
+                      >
+                      <span>Color: Green</span>
+                    </div>
+                  </div>
+                  <div
+                    class="text-xl flex flex-row items-center h-10 border-2 border-solid border-gray-400"
+                  >
+                    <button class="w-10 h-8">-</button>
+                    <span
+                      class="w-10 h-full flex items-center justify-center border-x-2 border-solid border-gray-400"
+                      >1</span
+                    >
+                    <button class="w-10 h-8">+</button>
+                  </div>
+                  <div><span class="text-xl">1.000.000VNĐ</span></div>
+                </div>
+              </div>
+              <div class="flex justify-between items-center text-[#2c2c2c]">
+                <span
+                  class="text-sm px-4 py-1 border-[1px] border-solid border-gray-300 rounded-[99px]"
+                  >Còn hàng</span
+                >
+                <span
+                  class="text-lg px-4 py-1 border-[1px] border-solid border-gray-300 rounded-[99px] cursor-pointer"
+                  >Xóa khỏi giỏ hàng</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="w-full">
     <div>
       <div class="flex-container flex items-center justify-center">
         <div class="flex w-2/5">
@@ -193,7 +255,7 @@ getCart();
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style lang="scss">

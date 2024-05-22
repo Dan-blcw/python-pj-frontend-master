@@ -77,7 +77,7 @@ watch(search, () => {
       <el-table-column prop="is_active" label="Trạng thái" width="200">
         <template #default="scope">
           <div>
-            {{ scope.row.is_active ? "Hoạt động" : "Chặn" }}
+            {{ scope.row.is_active ? "is_active" : "isn't active" }}
           </div>
         </template>
       </el-table-column>

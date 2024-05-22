@@ -34,8 +34,9 @@ defineExpose({
 <template>
   <el-dialog
     v-model="dialogFormVisible"
-    title="Thông tin giỏ hàng"
-    width="1500"
+    title="Thông tin Chi tiết Đơn Hàng"
+    width="1200"
+    align-center="true"
   >
     <el-table
       :data="tableData"
@@ -46,23 +47,29 @@ defineExpose({
       sum-text="Tổng"
     >
       <el-table-column prop="stt" label="STT" width="80"></el-table-column>
-      <el-table-column prop="img" label="Hình Ảnh" width="180">
+      <el-table-column prop="img" label="Hình Ảnh" width="220">
         <template #default="prop">
           <img :src="prop.row.img" alt="" />
         </template>
       </el-table-column>
-      <el-table-column prop="name" label="Sản phẩm" />
-      <el-table-column prop="colors" label="Màu sắc" />
-      <el-table-column prop="size" label="Kích thước" />
-      <el-table-column prop="quantityOrderDetail" label="Số lượng" />
+      <el-table-column prop="name" label="Sản phẩm" width="360" />
+      <el-table-column prop="colors" label="Màu sắc" width="90" />
+      <el-table-column prop="size" label="Kích thước" width="110" />
+      <el-table-column
+        prop="quantityOrderDetail"
+        label="Số lượng"
+        width="110"
+      />
       <el-table-column prop="priceOrderDetail" label="Đơn giá" />
     </el-table>
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button @click="closeModal">Huỷ</el-button>
-      </div>
-    </template>
   </el-dialog>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.centered-dialog .el-dialog__body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+</style>

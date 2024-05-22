@@ -36,11 +36,11 @@ onMounted(() => {
       }
       setTimeout(() => {
         if (checkInterval.value) {
-          handleClickItem(0, true);
+          handleClickItem(1, true);
         }
-      }, 2000);
-    }, 2000);
-  }, 6000);
+      }, 3000);
+    }, 3000);
+  }, 3000);
 });
 
 onUnmounted(() => {
@@ -82,13 +82,13 @@ onUnmounted(() => {
               <div class="image-slide">
                 <img
                   class="image"
-                  src="https://theme.hstatic.net/1000026602/1001232314/14/slideshow_3.jpg?v=107"
+                  src="https://theme.hstatic.net/1000026602/1001232314/14/slideshow_1.jpg?v=132"
                 />
               </div>
               <div class="image-slide">
                 <img
                   class="image"
-                  src="https://theme.hstatic.net/1000026602/1001232314/14/slideshow_2.jpg?v=107"
+                  src="https://theme.hstatic.net/1000026602/1001232314/14/img-banner-index.jpg?v=132"
                 />
               </div>
             </div>

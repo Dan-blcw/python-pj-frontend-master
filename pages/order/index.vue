@@ -77,9 +77,10 @@ getOrder();
               width="80"
             ></el-table-column>
             <el-table-column prop="sku" label="Mã hóa đơn" width="140" />
-            <el-table-column prop="name" label="Họ Tên" width="140" />
+            <el-table-column prop="name" label="Họ Tên" width="110" />
             <el-table-column prop="phone" label="Số điện thoại" width="140" />
-            <el-table-column prop="address" label="Địa chỉ" width="360" />
+            <el-table-column prop="address" label="Địa chỉ" width="320" />
+            <el-table-column prop="status" label="Trạng Thái" width="140" />
             <el-table-column
               prop="total_amount"
               label="Tổng giá trị đơn hàng"

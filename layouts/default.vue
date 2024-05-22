@@ -169,6 +169,10 @@ const handleClick = () => {
 };
 
 const logOut = () => {
+  // auth.$state.user.is_active = false;
+  // auth.$state.user.last_login = new Date().toISOString();
+  // console.log("dsfasdf");
+  // console.log(auth.$state.user.is_active);
   auth.deleteAuth();
   window.location.reload();
 };
@@ -266,7 +270,7 @@ watch(search, () => {
                   <span
                     class="cursor-pointer py-2 px-4 text-base hover:underlin"
                   >
-                    Xin chào, {{ auth.$state.user.username }}
+                    How it goin? {{ auth.$state.user.username }}
                   </span>
                   <nuxt-link to="/account">
                     <div

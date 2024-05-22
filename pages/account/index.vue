@@ -61,57 +61,51 @@ const updateAvatar = async (avatar: string) => {
 const fetchUserInfo = async () => {
   const user = localStorage.getItem("user") + "";
   const userPasre = JSON.parse(user);
-  console.log(userPasre);
-
-  username.value = userPasre.username;
-  email.value = userPasre.email;
-  firstname.value = userPasre.first_name;
-  lastname.value = userPasre.last_name;
   userId.value = userPasre.id;
 
-  // try {
-  //   const accessToken = localStorage.getItem("accessToken");
-  //   console.log({ accessToken });
+  try {
+    const token = localStorage.getItem("accessToken") || '""';
 
-  //   const response = await fetch("/api/user/3", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/user/${userId.value}/`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
 
-  //       Authorization: `Bearer ${accessToken}`,
-  //     },
-  //   });
-  //   const result = await response.json();
-  //   if (result.success) {
-  //     const { username, avatar, email, first_name, last_name } = result.data;
-  //     console.log({ username, avatar, email, first_name, last_name });
+    // const { first_name, last_name, username, email } = result;
+    username.value = result.username;
+    email.value = result.email;
+    firstname.value = result.first_name;
+    lastname.value = result.last_name;
 
-  //     username.value = username;
-  //     email.value = email;
-  //     firstname.value = first_name;
-  //     lastname.value = last_name;
+    // if (result.success) {
+    //   const { username, avatar, email, first_name, last_name } = result.data;
+    //   console.log({ username, avatar, email, first_name, last_name });
+    //   username.value = username;
+    //   email.value = email;
+    //   firstname.value = first_name;
+    //   lastname.value = last_name;
 
-  //     if (avatar) {
-  //       avatarUrl.value = avatar;
-  //     }
-  //   }
-  // } catch (error) {
-  //   console.error("Error fetching user information:", error);
-  // }
+    //   if (avatar) {
+    //     avatarUrl.value = avatar;
+    //   }
+    // }
+  } catch (error) {
+    console.error("Error fetching user information:", error);
+  }
 };
 
 // Cập nhật thông tin người dùng
 const updatePersonalInfo = async () => {
-  console.log({
-    first_name: firstname.value,
-    last_name: lastname.value,
-    username: username.value,
-    email: email.value,
-  });
   const user = localStorage.getItem("user") + "";
   const userPasre = JSON.parse(user);
-  console.log(userPasre);
-
   try {
     const token = localStorage.getItem("accessToken") || '""';
     const response = await fetch(
@@ -137,6 +131,7 @@ const updatePersonalInfo = async () => {
       }
     );
     const result = await response.json();
+    window.location.reload();
     if (result.success) {
       alert("Personal information updated successfully");
     }
@@ -188,14 +183,14 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-slate-200 mt-[-15px] pt-2 bg-[url('https://theme.hstatic.net/1000026602/1001232314/14/img-banner-index.jpg?v=107')] bg-cover bg-center"
+    class="bg-slate-200 mt-[-15px] pt-2 bg-[url('https://theme.hstatic.net/1000026602/1001232314/14/use_title_bottom_tab_show_banner.jpg?v=132')] bg-cover bg-center"
   >
     <div class="max-w-[1300px] mx-auto">
       <div class="mt-10 flex flex-row gap-10">
         <div
           class="basis-1/3 w-1/3 mb-20 bg-white rounded-md overflow-hidden h-fit"
         >
-          <h2 class="text-xl bg-stone-900 px-4 py-2 text-white">
+          <h2 class="text-lg bg-stone-900 px-4 py-2 text-white">
             Ảnh đại diện
           </h2>
           <div class="mx-auto rounded-full w-full my-4">
@@ -216,11 +211,11 @@ onMounted(() => {
             </div>
 
             <form enctype="multipart/form-data">
-              <p class="text-md w-full my-4 text-center">
+              <p class="text-base w-full my-4 text-center">
                 JPG or PNG no larger than 5 MB
               </p>
               <button
-                class="block max-w-[200px] mx-auto px-4 py-2 bg-stone-900 hover:bg-white hover:text-black text-center text-lg text-white font-normal rounded-lg mt-5 cursor-pointer border-solid border-2 border-black transition-colors"
+                class="block max-w-[200px] mx-auto px-4 py-2 bg-stone-900 hover:bg-white hover:text-black text-center text-base text-white font-normal rounded-lg mt-5 cursor-pointer border-solid border-2 border-black transition-colors"
               >
                 Cập nhật ảnh đại diện
               </button>
@@ -234,30 +229,30 @@ onMounted(() => {
               />
             </form>
           </div>
-          <div class="p-4 border-t-4 border-solid border-slate-200">
-            <div class="flex gap-2 text-lg mb-2">
+          <!-- <div class="p-4 border-t-4 border-solid border-slate-200">
+            <div class="flex gap-2 text-base mb-2">
               <span class="min-w-[150px] font-bold flex items-center gap-2"
                 >First Name:</span
               >
               <p>{{ firstname }}</p>
             </div>
-            <div class="flex gap-2 text-lg mb-2">
+            <div class="flex gap-2 text-base mb-2">
               <span class="min-w-[150px] font-bold flex items-center gap-2"
                 >Last Name:</span
               >
               <p>{{ lastname }}</p>
             </div>
-            <div class="flex gap-2 text-lg mb-2">
+            <div class="flex gap-2 text-base mb-2">
               <span class="min-w-[150px] font-bold flex items-center gap-2"
                 >Email:</span
               >
               <p>{{ email }}</p>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="basis-2/3 w-2/3 mb-20 h-fit">
           <div class="mb-10 rounded-md overflow-hidden">
-            <h2 class="text-xl bg-stone-900 px-4 py-2 text-white">
+            <h2 class="text-lg bg-stone-900 px-4 py-2 text-white">
               Thông tin chi tiết
             </h2>
             <form
@@ -320,7 +315,7 @@ onMounted(() => {
             </form>
           </div>
           <div class="rounded-md overflow-hidden">
-            <h2 class="text-xl bg-stone-900 px-4 py-2 text-white">
+            <h2 class="text-lg bg-stone-900 px-4 py-2 text-white">
               Thay đổi mật khẩu
             </h2>
             <form
