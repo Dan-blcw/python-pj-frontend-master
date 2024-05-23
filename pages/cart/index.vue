@@ -5,150 +5,57 @@ import { useAuthStore } from "~/stores/auth.js";
 import ModalPayment from "~/components/common/ModalPayment.vue";
 import CartItem from "~/components/common/CartItem.vue";
 
-// const { $apiUrl } = useNuxtApp();
-
-// const auth = useAuthStore();
-
-// const tableData = ref([]);
-// const refModalPayment = ref();
-
-// const headerRowStyle = () => {
-//   return "header-cell-dio-style";
-// };
-// const getCart = () => {
-//   const id =
-//     auth.$state.user && auth.$state.user.cart ? auth.$state.user.cart : null;
-//   spaFetch()(`${$apiUrl.CART}${id}/`, {
-//     method: "GET",
-//   })
-//     .then((res) => {
-//       auth.setQuantityInCart(res.products.length);
-//       tableData.value = res.products.map((item, index) => {
-//         return {
-//           ...item.product,
-//           stt: index + 1,
-//           id: item.id,
-//           idProduct: item.product.id,
-//           colors: item.colors,
-//           size: item.size,
-//           quantityCart: item.quantity,
-//           priceCart: item.product.price * item.quantity,
-//         };
-//       });
-//       // console.table(tableData.value)
-//     })
-//     .catch((error) => {
-//       console.log("error", error.response);
-//     });
-// };
-// const handleChange = (value, item, oldValue) => {
-//   if (!value) {
-//     return (item.quantityCart = oldValue);
-//   }
-//   spaFetch()(`${$apiUrl.CART_ITEM}${item.id}/`, {
-//     method: "PATCH",
-//     body: {
-//       quantity: value,
-//       colors: item.colors,
-//       size: item.size,
-//     },
-//   })
-//     .then((res) => {
-//       item.priceCart = value * item.price;
-//     })
-//     .catch((error) => {
-//       item.quantityCart = oldValue;
-//       console.log("error", error.response);
-//       if (error.status === 400) {
-//         ElMessage.error({
-//           message: "Số lượng hàng trong kho không đủ",
-//         });
-//       } else {
-//         ElMessage.error("Thêm vào giỏ hàng thất bại");
-//       }
-//     });
-// };
-
-// const deleteItemCart = (item) => {
-//   spaFetch()(`${$apiUrl.CART_ITEM}${item.id}/`, {
-//     method: "DELETE",
-//   })
-//     .then((res) => {
-//       tableData.value = tableData.value.filter((i) => i.id !== item.id);
-//       auth.setQuantityInCart(auth.$state.quantityInCart - 1);
-//       ElMessage.success("Xoá sản phấm thảnh công");
-//     })
-//     .catch((error) => {
-//       console.log("error", error.response);
-//       ElMessage.error("Xoá sản phấm thất bại");
-//     });
-// };
-
-// const openModal = () => {
-//   refModalPayment.value.openModal();
-// };
-
-// getCart();
-
 const { $apiUrl } = useNuxtApp();
 
 const auth = useAuthStore();
 
-const cartList = ref([
-  {
-    id: 77,
-    product: {
-      id: 438,
-      creation_time: 1715938430,
-      name: "EMBOSSED LOGOS STRAIGHT JEANS",
-      img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc09829-0629.jpg",
-      price: 460000,
-      colors: null,
-      size: null,
-      description:
-        "Quần dài của hãng Some How là sự kết hợp hoàn hảo giữa phong cách hiện đại và cổ điển, mang đến cho bạn vẻ ngoài ấn tượng và cuốn hút. Với thiết kế ống loe đặc trưng và màu nâu đất thời thượng, chiếc quần này không chỉ giúp tôn dáng mà còn dễ dàng phối hợp với nhiều trang phục khác nhau.",
-      quantity: 19,
-      type: "Quần dài",
-    },
-    quantity: 2,
-    colors: "Gray",
-    size: "S",
-    cart: 27,
-  },
-]);
+const tableData = ref([]);
+const paymentInfo = ref(0);
 const refModalPayment = ref();
 
 const headerRowStyle = () => {
   return "header-cell-dio-style";
 };
+
+const calculateTotalCost = () => {
+  paymentInfo.value = tableData.value.reduce(
+    (total, item) => total + item.priceCart,
+    0
+  );
+};
+
 const getCart = () => {
-  // const id =
-  //   auth.$state.user && auth.$state.user.cart ? auth.$state.user.cart : null;
-  // spaFetch()(`${$apiUrl.CART}${id}/`, {
-  //   method: "GET",
-  // })
-  //   .then((res) => {
-  //     auth.setQuantityInCart(res.products.length);
-  //     cartList.value = res.products.map((item, index) => {
-  //       return {
-  //         ...item.product,
-  //         stt: index + 1,
-  //         id: item.id,
-  //         idProduct: item.product.id,
-  //         colors: item.colors,
-  //         size: item.size,
-  //         quantityCart: item.quantity,
-  //         priceCart: item.product.price * item.quantity,
-  //       };
-  //     });
-  //     // console.table(tableData.value)
-  //   })
-  //   .catch((error) => {
-  //     console.log("error", error.response);
-  //   });
+  const id =
+    auth.$state.user && auth.$state.user.cart ? auth.$state.user.cart : null;
+  spaFetch()(`${$apiUrl.CART}${id}/`, {
+    method: "GET",
+  })
+    .then((res) => {
+      auth.setQuantityInCart(res.products.length);
+      tableData.value = res.products.map((item, index) => {
+        // paymentInfo.value += item.product.price * item.quantity;
+        const priceCart = item.product.price * item.quantity;
+        return {
+          ...item.product,
+          stt: index + 1,
+          id: item.id,
+          idProduct: item.product.id,
+          colors: item.colors,
+          size: item.size,
+          quantityCart: item.quantity,
+          priceCart: priceCart,
+        };
+      });
+      calculateTotalCost();
+      // console.table(tableData.value)
+    })
+    .catch((error) => {
+      console.log("error", error.response);
+    });
 };
 const handleChange = (value, item, oldValue) => {
   if (!value) {
+    getCart();
     return (item.quantityCart = oldValue);
   }
   spaFetch()(`${$apiUrl.CART_ITEM}${item.id}/`, {
@@ -160,7 +67,10 @@ const handleChange = (value, item, oldValue) => {
     },
   })
     .then((res) => {
+      item.quantityCart = value;
       item.priceCart = value * item.price;
+      calculateTotalCost();
+      getCart();
     })
     .catch((error) => {
       item.quantityCart = oldValue;
@@ -182,17 +92,19 @@ const deleteItemCart = (item) => {
     .then((res) => {
       tableData.value = tableData.value.filter((i) => i.id !== item.id);
       auth.setQuantityInCart(auth.$state.quantityInCart - 1);
+      calculateTotalCost();
+      getCart();
       ElMessage.success("Xoá sản phấm thảnh công");
     })
     .catch((error) => {
       console.log("error", error.response);
       ElMessage.error("Xoá sản phấm thất bại");
     });
+  getCart();
 };
+
 const openModal = () => {
-  if (refModalPayment.value) {
-    refModalPayment.value.openModal();
-  }
+  refModalPayment.value.openModal();
 };
 
 getCart();
@@ -208,10 +120,10 @@ getCart();
     <div class="w-full flex flex-row justify-between">
       <div class="w-3/5 bg-white mt-5">
         <!-- StarT: Cart Item List -->
-        <div class="w-full pr-10 h-auto">
+        <div class="w-full pr-10">
           <!-- Cart Item -->
           <CartItem
-            v-for="item in cartList"
+            v-for="item in tableData"
             :key="item.id"
             :item="item"
             :on-quantity-change="handleChange"
@@ -230,9 +142,12 @@ getCart();
               class="flex justify-between py-4 border-b-[1px] border-solid border-gray-300"
             >
               <h3>Chi phí đơn hàng</h3>
-              <span class="text-lg font-semibold text-[#2c2c2c]"
-                >1.000.000VNĐ</span
-              >
+              <span class="text-lg font-semibold text-[#2c2c2c]">{{
+                paymentInfo.toLocaleString("vi", {
+                  style: "currency",
+                  currency: "VND",
+                })
+              }}</span>
             </li>
             <li
               class="flex justify-between py-4 border-b-[1px] border-solid border-gray-300"
@@ -266,9 +181,9 @@ getCart();
         </div>
       </div>
     </div>
-    <!-- <ModalPayment ref="refModalPayment" :order-details="cartList" /> -->
+    <ModalPayment ref="refModalPayment" :order-details="tableData" />
 
-    <div class="w-[600px] bg-slate-200 py-2 px-4 rounded-lg">
+    <!-- <div class="w-[600px] bg-slate-200 py-2 px-4 rounded-lg">
       <h2 class="text-xl p-2 text-center font-bold text-[#2c2c2c] mb-5">
         Thông tin thanh toán
       </h2>
@@ -386,7 +301,7 @@ getCart();
           Xác nhận
         </button>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <!-- <div class="w-full">

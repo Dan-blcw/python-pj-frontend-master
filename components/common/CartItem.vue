@@ -56,6 +56,7 @@ const handleChange = (value, item, oldValue) => {
         ElMessage.error("Thêm vào giỏ hàng thất bại");
       }
     });
+  window.location.reload();
 };
 
 const removeItem = () => {
@@ -69,7 +70,7 @@ const removeItem = () => {
   >
     <img
       class="w-32 h-36 rounded-lg border-2 border-solid border-gray-500"
-      :src="item.product.img"
+      :src="item.img"
       alt="product thumb"
     />
     <div class="flex-1 flex flex-col justify-between">
@@ -77,7 +78,7 @@ const removeItem = () => {
         <div class="flex-1 flex flex-row flex-wrap justify-between">
           <div class="basis-2/5 max-w-2/5">
             <h3 class="text-base font-bold text-[#2c2c2c]">
-              {{ item.product.name }}
+              {{ item.name }}
             </h3>
             <div class="flex gap-5">
               <span class="pr-5 border-r-[1px] border-solid border-gray-200">
@@ -88,19 +89,14 @@ const removeItem = () => {
           </div>
           <div>
             <el-input-number
-              v-model="item.quantity"
+              v-model="item.quantityCart"
               :min="1"
               @change="(value) => handleChange(value, item, item.quantityCart)"
             />
           </div>
 
           <div class="basis-1/5 max-w-1/5">
-            <span class="text-xl">{{
-              item.product.price.toLocaleString("vi", {
-                style: "currency",
-                currency: "VND",
-              })
-            }}</span>
+            <span class="text-xl">{{ item.price }}</span>
           </div>
         </div>
       </div>
@@ -137,3 +133,4 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 </style>
+.toLocaleString("vi", { style: "currency", currency: "VND", })
