@@ -96,50 +96,24 @@ const auth = useAuthStore();
 
 const cartList = ref([
   {
-    id: 1,
-    idProduct: "SP001",
-    colors: "Green",
-    size: "XL",
-    quantityCart: 2,
-    priceCart: 1000000,
-    productName: "Waffle Knit Beanie",
-    productThumb:
-      "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc04412-1624.jpg",
-  },
-  {
-    id: 2,
-    idProduct: "SP002",
-    colors: "Red",
-    size: "XL",
-    quantityCart: 2,
-    priceCart: 1000000,
-    productName: "Waffle Knit Beanie",
-
-    productThumb:
-      "https://shop-rose-beta.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F17.fcfa959c.png&w=750&q=75",
-  },
-  {
-    id: 3,
-    idProduct: "SP003",
-    colors: "Green",
-    size: "XL",
-    quantityCart: 2,
-    priceCart: 1000000,
-    productName: "LOGO CAMO PUFFER JACKET V2 LOGO CAMO PUFFER JACKET V2",
-
-    productThumb:
-      "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc04412-1624.jpg",
-  },
-  {
-    id: 4,
-    idProduct: "SP004",
-    colors: "Green",
-    size: "XL",
-    quantityCart: 1,
-    priceCart: 500000,
-    productName: "LOGO CAMO PUFFER JACKET V2",
-    productThumb:
-      "https://shop-rose-beta.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F5.addcba21.png&w=750&q=75",
+    id: 77,
+    product: {
+      id: 438,
+      creation_time: 1715938430,
+      name: "EMBOSSED LOGOS STRAIGHT JEANS",
+      img: "https://smakerclothing.com/thumb/320x300/1/upload/sanpham/dsc09829-0629.jpg",
+      price: 460000,
+      colors: null,
+      size: null,
+      description:
+        "Quần dài của hãng Some How là sự kết hợp hoàn hảo giữa phong cách hiện đại và cổ điển, mang đến cho bạn vẻ ngoài ấn tượng và cuốn hút. Với thiết kế ống loe đặc trưng và màu nâu đất thời thượng, chiếc quần này không chỉ giúp tôn dáng mà còn dễ dàng phối hợp với nhiều trang phục khác nhau.",
+      quantity: 19,
+      type: "Quần dài",
+    },
+    quantity: 2,
+    colors: "Gray",
+    size: "S",
+    cart: 27,
   },
 ]);
 const refModalPayment = ref();
