@@ -29,6 +29,10 @@ const props = defineProps({
 // };
 const { $apiUrl } = useNuxtApp();
 
+// Test
+const emit = defineEmits(["quantity-change"]);
+// Test
+
 const handleChange = (value, item, oldValue) => {
   console.log("Change quanlity");
   if (!value) {
@@ -44,6 +48,9 @@ const handleChange = (value, item, oldValue) => {
   })
     .then((res) => {
       item.priceCart = value * item.price;
+      // Test
+      emit("quantity-change", value, item);
+      // Test
     })
     .catch((error) => {
       item.quantityCart = oldValue;
@@ -56,7 +63,7 @@ const handleChange = (value, item, oldValue) => {
         ElMessage.error("Thêm vào giỏ hàng thất bại");
       }
     });
-  window.location.reload();
+  // window.location.reload();
 };
 
 const removeItem = () => {
@@ -96,7 +103,12 @@ const removeItem = () => {
           </div>
 
           <div class="basis-1/5 max-w-1/5">
-            <span class="text-xl">{{ item.price }}</span>
+            <span class="text-xl">{{
+              item.price.toLocaleString("vi", {
+                style: "currency",
+                currency: "VND",
+              })
+            }}</span>
           </div>
         </div>
       </div>
@@ -133,4 +145,3 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 </style>
-.toLocaleString("vi", { style: "currency", currency: "VND", })

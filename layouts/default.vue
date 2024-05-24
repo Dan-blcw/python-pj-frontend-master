@@ -287,12 +287,13 @@ watch(search, () => {
                       Quản lý đơn hàng
                     </div>
                   </nuxt-link>
-                  <div
+                  <a
                     class="cursor-pointer py-2 px-4 text-base hover:text-cyan-700"
                     @click="logOut"
+                    href="/"
                   >
                     Đăng xuất
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>

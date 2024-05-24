@@ -19,6 +19,8 @@ const formLabelWidth = "200px";
 const form = reactive({
   sku: "",
   name: auth.$state.user.username,
+  first_name: auth.$state.user.first_name,
+  last_name: auth.$state.user.last_name,
   email: auth.$state.user.email,
   phone: "",
   address: "",
@@ -26,13 +28,6 @@ const form = reactive({
 });
 
 const rules = reactive({
-  name: [
-    {
-      required: true,
-      message: "Vui lòng điền thông tin họ và tên",
-      trigger: "blur",
-    },
-  ],
   phone: [
     {
       required: true,
@@ -266,8 +261,24 @@ defineExpose({
           <el-input v-model="form.email" autocomplete="off" disabled />
         </el-form-item>
       </div>
+
+      <!-- <div class="flex flex-row flex-wrap justify-between items-center">
+        <el-form-item prop="first_name" class="basis-1/2 max-w-1/2 p-2">
+          <label class="text-[#2c2c2c] text-base font-medium" for="name"
+            >Firstname</label
+          >
+          <el-input v-model="form.first_name" autocomplete="off" disabled />
+        </el-form-item>
+        <el-form-item prop="last_name" class="basis-1/2 max-w-1/2 p-2">
+          <label class="text-[#2c2c2c] text-base font-medium" for="name"
+            >Lastname</label
+          >
+          <el-input v-model="form.last_name" autocomplete="off" disabled />
+        </el-form-item>
+      </div> -->
+
       <div class="flex flex-row flex-wrap justify-between items-center">
-        <el-form-item prop="name" class="basis-1/2 max-w-1/2 p-2">
+        <el-form-item prop="phone" class="basis-1/2 max-w-1/2 p-2">
           <label class="text-[#2c2c2c] text-base font-medium" for="name"
             >Số điện thoại</label
           >
@@ -280,11 +291,11 @@ defineExpose({
           <el-input v-model="form.address" autocomplete="off" />
         </el-form-item>
       </div>
-      <div class="mb-4 p-2">
-        <h3 class="text-[#2c2c2c] text-base font-medium">
-          Phương thức thanh toán
-        </h3>
-        <div class="mt-1 flex items-center gap-2 ms-5">
+      <h3 class="text-[#2c2c2c] text-base font-medium">
+        Phương thức thanh toán
+      </h3>
+      <div class="mb-4 p-2 flex flex-row">
+        <div class="flex items-center gap-2 ms-5">
           <input
             type="radio"
             id="paymentMethod_direct"
@@ -296,7 +307,7 @@ defineExpose({
             >Thanh toán khi nhận hàng</label
           >
         </div>
-        <div class="mt-1 flex items-center gap-2 ms-5">
+        <div class="flex items-center gap-2 ms-5">
           <input
             type="radio"
             id="paymentMethod_banking"

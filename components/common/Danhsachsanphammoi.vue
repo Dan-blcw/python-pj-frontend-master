@@ -50,7 +50,7 @@ getProducts();
 <template>
   <div class="mb-20">
     <div
-      class="flex items-center justify-center relative bg-[url('https://sherifstore.click/static/media/banner2.ad24901f3755b7bc537e.webp')] bg-no-repeat bg-cover bg-center bg-fixed mt-5 w-full h-[280px] rounded-t-xl"
+      class="flex items-center justify-center relative bg-[url('https://theme.hstatic.net/1000026602/1001232314/14/img-banner-index.jpg?v=132')] bg-no-repeat bg-cover bg-center bg-fixed mt-5 w-full h-[280px] rounded-t-xl"
     >
       <div class="absolute inset-0 bg-black opacity-50"></div>
       <h2
