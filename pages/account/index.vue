@@ -12,7 +12,8 @@ account/index.vue:
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { User, EditPen, Message } from "@element-plus/icons-vue";
-
+// import auth from "~/middleware/auth";
+const auth = useAuthStore();
 // Reactive properties to hold form data
 const avatarUrl = ref(
   "https://media.istockphoto.com/id/1341046662/vector/picture-profile-icon-human-or-people-sign-and-symbol-for-template-design.jpg?s=612x612&w=0&k=20&c=A7z3OK0fElK3tFntKObma-3a7PyO8_2xxW0jtmjzT78="
@@ -23,35 +24,38 @@ const username = ref("");
 const email = ref("");
 const userId = ref("");
 
-//Xử lý thay đổi ảnh đại diện
+// Xử lý thay đổi ảnh đại diện
 const handleImageUpload = async (event: Event) => {
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
   if (file) {
-    const reader = new FileReader();
-    reader.onload = (e: ProgressEvent<FileReader>) => {
-      if (e.target) {
-        avatarUrl.value = e.target.result as string;
-        // Call API khi update ảnh
-        updateAvatar(avatarUrl.value);
-      }
-    };
-    reader.readAsDataURL(file);
+    // Call API khi update ảnh, truyền đối tượng File
+    updateAvatar(file);
   }
 };
 
 // Cập nhật Avatar
-const updateAvatar = async (avatar: string) => {
+const updateAvatar = async (avatar: File) => {
   try {
-    const response = await fetch("/api/update-avatar", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ avatar }),
-    });
+    const formData = new FormData();
+    formData.append("id", userId.value);
+    formData.append("file", avatar);
+    formData.append("username", auth.$state.user.username);
+
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/image-upload/${userId.value}/`,
+      {
+        method: "PUT",
+        body: formData,
+      }
+    );
+
+    // console.log(avatar);
     const result = await response.json();
-    if (result.success) {
-      alert("Avatar updated successfully");
-    }
+    // console.log(result);
+    // if (result.success) {
+    //   alert("Avatar updated successfully");
+    // }
   } catch (error) {
     console.error("Error updating avatar:", error);
   }
@@ -85,20 +89,34 @@ const fetchUserInfo = async () => {
     firstname.value = result.first_name;
     lastname.value = result.last_name;
 
-    // if (result.success) {
-    //   const { username, avatar, email, first_name, last_name } = result.data;
-    //   console.log({ username, avatar, email, first_name, last_name });
-    //   username.value = username;
-    //   email.value = email;
-    //   firstname.value = first_name;
-    //   lastname.value = last_name;
-
     //   if (avatar) {
     //     avatarUrl.value = avatar;
     //   }
     // }
   } catch (error) {
     console.error("Error fetching user information:", error);
+  }
+};
+
+// Get avatar
+const getAvatarUser = async () => {
+  try {
+    const token = localStorage.getItem("accessToken") || '""';
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/image-upload/${userId.value}/`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      }
+    );
+    const result = await response.json();
+    avatarUrl.value = result.image_url;
+    console.log(result);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -178,6 +196,7 @@ const changePassword = async () => {
 //Lấy thông tin người dùng
 onMounted(() => {
   fetchUserInfo();
+  getAvatarUser();
 });
 </script>
 
