@@ -105,11 +105,11 @@ watch(search, () => {
         </template>
       </el-table-column>
       <el-table-column prop="name" label="Tên sản phẩm" width="220" />
-      <el-table-column prop="type" label="Loại sản phẩm" width="160" />
+      <el-table-column prop="type" label="Loại sản phẩm" width="100" />
       <el-table-column prop="quantity" label="Số lượng tồn kho" width="160" />
-      <el-table-column prop="price" label="Giá thành" width="160" />
-      <el-table-column prop="description" label="Mô tả" width="420" />
-      <el-table-column fixed="right" label="Hành động" width="120">
+      <el-table-column prop="price" label="Giá thành" width="110" />
+      <el-table-column prop="description" label="Mô tả" width="440" />
+      <el-table-column fixed="right" label="Hành động" width="200">
         <template #default="scope">
           <el-button
             link
@@ -119,13 +119,15 @@ watch(search, () => {
           >
             Thay đổi
           </el-button>
+
           <el-popconfirm
-            title="Bạn có chắc chắn muốn xoá sản phẩm này?"
-            width="220"
+            title="Xác nhận chắc chắn muốn xóa sản phẩm này?"
+            width="280"
+            popper-class="custom-popconfirm  text-[50px]"
             @confirm="deleteRow(scope.row)"
           >
             <template #reference>
-              <el-button link type="danger" size="large"> Xoá </el-button>
+              <el-button type="danger" size="medium"> xoá </el-button>
             </template>
           </el-popconfirm>
         </template>

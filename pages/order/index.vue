@@ -114,7 +114,7 @@ getOrder();
                 </el-button>
 
                 <el-popconfirm
-                  title="Xác nhận chắc chắn muốn đơn đặt hàng những sản phẩm này?"
+                  title="Xác nhận chắc chắn muốn xóa đơn đặt hàng những sản phẩm này?"
                   width="300"
                   popper-class="custom-popconfirm  text-[50px]"
                   @confirm="deleteOrder(prop.row)"
@@ -131,7 +131,7 @@ getOrder();
           <ChitietOrder ref="refModalPayment" />
         </div>
 
-        <div class="flex w-3/12">
+        <div class="w-3/12">
           <img
             class="image"
             src="https://i.pinimg.com/564x/2c/ca/1d/2cca1d3ac636b17bdf5bc1cc7c6c63f9.jpg"

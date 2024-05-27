@@ -21,21 +21,49 @@ const props = defineProps({
   },
 });
 
-const decreaseQuantity = () => {
-  if (props.item.quantityCart > 1) {
-    props.onQuantityChange(props.item.quantityCart - 1, props.item);
-  }
-};
+// const onQuantityChange = (event) => {
+//   const newValue = parseInt(event.target.value, 10);
+//   if (newValue && newValue > 0) {
+//     props.onQuantityChange(newValue, props.item);
+//   }
+// };
+const { $apiUrl } = useNuxtApp();
 
-const increaseQuantity = () => {
-  props.onQuantityChange(props.item.quantityCart + 1, props.item);
-};
+// Test
+const emit = defineEmits(["quantity-change"]);
+// Test
 
-const onQuantityChange = (event) => {
-  const newValue = parseInt(event.target.value, 10);
-  if (newValue && newValue > 0) {
-    props.onQuantityChange(newValue, props.item);
+const handleChange = (value, item, oldValue) => {
+  console.log("Change quanlity");
+  if (!value) {
+    return (item.quantityCart = oldValue);
   }
+  spaFetch()(`${$apiUrl.CART_ITEM}${item.id}/`, {
+    method: "PATCH",
+    body: {
+      quantity: value,
+      colors: item.colors,
+      size: item.size,
+    },
+  })
+    .then((res) => {
+      item.priceCart = value * item.price;
+      // Test
+      emit("quantity-change", value, item);
+      // Test
+    })
+    .catch((error) => {
+      item.quantityCart = oldValue;
+      console.log("error", error.response);
+      if (error.status === 400) {
+        ElMessage.error({
+          message: "Số lượng hàng trong kho không đủ",
+        });
+      } else {
+        ElMessage.error("Thêm vào giỏ hàng thất bại");
+      }
+    });
+  // window.location.reload();
 };
 
 const removeItem = () => {
@@ -49,7 +77,7 @@ const removeItem = () => {
   >
     <img
       class="w-32 h-36 rounded-lg border-2 border-solid border-gray-500"
-      :src="item.productThumb"
+      :src="item.img"
       alt="product thumb"
     />
     <div class="flex-1 flex flex-col justify-between">
@@ -57,7 +85,7 @@ const removeItem = () => {
         <div class="flex-1 flex flex-row flex-wrap justify-between">
           <div class="basis-2/5 max-w-2/5">
             <h3 class="text-base font-bold text-[#2c2c2c]">
-              {{ item.productName }}
+              {{ item.name }}
             </h3>
             <div class="flex gap-5">
               <span class="pr-5 border-r-[1px] border-solid border-gray-200">
@@ -66,31 +94,21 @@ const removeItem = () => {
               <span>Color: {{ item.colors }}</span>
             </div>
           </div>
-          <div
-            class="w-fit text-lg flex flex-row items-center h-10 border-2 border-solid border-gray-400"
-          >
-            <button
-              class="w-10 h-full hover:bg-slate-500 hover:text-white transition-colors"
-              @click="decreaseQuantity"
-            >
-              -
-            </button>
-            <input
-              :value="item.quantityCart"
-              type="number"
-              min="1"
-              class="w-10 h-full text-center border-x-2 border-solid border-gray-400 outline-none"
-              @change="onQuantityChange"
+          <div>
+            <el-input-number
+              v-model="item.quantityCart"
+              :min="1"
+              @change="(value) => handleChange(value, item, item.quantityCart)"
             />
-            <button
-              class="w-10 h-full hover:bg-slate-500 hover:text-white transition-colors"
-              @click="increaseQuantity"
-            >
-              +
-            </button>
           </div>
+
           <div class="basis-1/5 max-w-1/5">
-            <span class="text-xl">{{ item.priceCart }}VNĐ</span>
+            <span class="text-xl">{{
+              item.price.toLocaleString("vi", {
+                style: "currency",
+                currency: "VND",
+              })
+            }}</span>
           </div>
         </div>
       </div>

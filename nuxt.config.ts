@@ -26,7 +26,7 @@ export default defineNuxtConfig({
     // Keys within public are also exposed client-side
     public: {
       baseURL: "http://127.0.0.1:8000",
-      // baseURL: 'https://2875-104-28-254-74.ngrok-free.app'
+      // baseURL: " https://8b20-104-28-222-75.ngrok-free.app",
     },
   },
   tailwindcss: {
